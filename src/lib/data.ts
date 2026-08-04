@@ -6,11 +6,12 @@ export const profile = {
   email: "jonicasenbeto@gmail.com",
   linkedin: "https://linkedin.com/in/yohanes-senbeto",
   github: "https://github.com/YohanesSenbeto",
+  youtube: "https://www.youtube.com/@Yoh-Tech-Solutions",
   portfolio: "https://ip-toolkit-pro.vercel.app/",
   company: "Ethio Telecom",
   photo: "/comman%20my_profile.jpg",
   summary:
-    "Full-stack developer at Ethio Telecom, passionate about building scalable internal tools. Experienced in React, Next.js, TypeScript, Prisma, and PostgreSQL. Strong problem-solver and rapid learner with a track record of delivering impactful solutions for enterprise clients.",
+    "Full-stack developer at Ethio Telecom, passionate about building scalable internal tools. Experienced in React, Next.js, TypeScript, Prisma, and PostgreSQL. Strong problem-solver and rapid learner with a track record of delivering impactful solutions for enterprise clients. Also a content creator on YouTube (Yoh-Tech Solutions) sharing tech tutorials.",
   stats: [
     { label: "Years Experience", value: "9+" },
     { label: "Projects Shipped", value: "12+" },
@@ -27,6 +28,10 @@ export const skills = [
   {
     category: "Frameworks",
     items: ["React", "Next.js", "Node.js", "Express", "NestJS"],
+  },
+  {
+    category: "AI & Machine Learning",
+    items: ["Generative AI", "Large Language Model", "OpenAI", "Gemini", "pgvector", "RAG"],
   },
   {
     category: "Databases",
@@ -184,6 +189,24 @@ export const projects: Project[] = [
     highlight: "Creative · Live",
     category: "Creative",
     image: "/joni_astu_wedding.png",
+    featured: true,
+  },
+  {
+    name: "Yoh-Tech Solutions — YouTube Channel",
+    description:
+      "Tech content creator channel sharing full-stack tutorials, AI tooling, and enterprise dev walkthroughs.",
+    longDescription:
+      "YouTube channel (Yoh-Tech Solutions) where I create hands-on tutorials on full-stack development, AI integrations, and enterprise tooling — breaking down complex builds into practical, follow-along videos.",
+    tech: ["YouTube", "Content Creation", "Next.js", "AI", "Tutorials"],
+    features: [
+      "Full-stack & AI integration walkthroughs",
+      "Practical, follow-along tutorial format",
+      "Enterprise dev tips & tooling demos",
+    ],
+    live: "https://www.youtube.com/@Yoh-Tech-Solutions",
+    highlight: "Content Creator",
+    category: "Creative",
+    image: "/youtube%20content.png",
     featured: true,
   },
 ];

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink, CheckCircle } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { GithubIcon, TelegramIcon } from "@/components/BrandIcons";
 import { projects } from "@/lib/data";
 
@@ -39,67 +39,48 @@ export default function Projects() {
         </motion.div>
 
         {/* Featured projects */}
-        <div className="grid lg:grid-cols-2 gap-6 mb-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-6">
           {featured.map((p, i) => (
             <motion.article
               key={p.name}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: (i % 2) * 0.1 }}
+              transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
               variants={fadeUp}
-              className="group relative rounded-3xl border border-subtle bg-surface p-7 hover:border-default transition-all overflow-hidden"
+              className="group relative flex flex-col rounded-2xl border border-subtle bg-surface overflow-hidden hover:border-default hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#7c5cff]/10 transition-all duration-300"
             >
-              {/* Gradient accent */}
-              <div
-                className={`absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl opacity-20 bg-gradient-to-br ${categoryColors[p.category]} group-hover:opacity-40 transition-opacity`}
-              />
-
-              <div className="relative">
-                {p.image && (
-                  <div className="relative mb-5 rounded-2xl overflow-hidden border border-subtle aspect-[16/10] bg-surface-2">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={p.image}
-                      alt={p.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                )}
-                <div className="flex items-start justify-between gap-3 mb-3">
-                  <div className="flex flex-wrap gap-2">
-                    <span
-                      className={`px-2.5 py-1 rounded-full text-xs font-medium text-white bg-gradient-to-r ${categoryColors[p.category]}`}
-                    >
-                      {p.category}
-                    </span>
-                    <span className="px-2.5 py-1 rounded-full text-xs border border-subtle text-secondary">
-                      {p.highlight}
-                    </span>
-                  </div>
+              {p.image && (
+                <div className="relative aspect-[16/10] bg-surface-2 overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <span
+                    className={`absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-medium text-white bg-gradient-to-r ${categoryColors[p.category]} shadow-lg`}
+                  >
+                    {p.category}
+                  </span>
                 </div>
+              )}
 
-                <h4 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+              <div className="flex flex-col flex-1 p-5">
+                <span className="inline-block w-fit px-2 py-0.5 rounded-full text-xs border border-subtle text-secondary mb-2">
+                  {p.highlight}
+                </span>
+
+                <h4 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">
                   {p.name}
                 </h4>
-                <p className="text-secondary text-sm leading-relaxed mb-4">
-                  {p.longDescription}
+                <p className="text-secondary text-sm leading-relaxed mb-4 line-clamp-3">
+                  {p.description}
                 </p>
 
-                <ul className="space-y-1.5 mb-5">
-                  {p.features.map((f) => (
-                    <li
-                      key={f}
-                      className="flex items-start gap-2 text-sm text-secondary"
-                    >
-                      <CheckCircle className="h-4 w-4 text-[#00e5ff] mt-0.5 shrink-0" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="flex flex-wrap gap-1.5 mb-5">
-                  {p.tech.map((t) => (
+                <div className="flex flex-wrap gap-1.5 mb-4">
+                  {p.tech.slice(0, 5).map((t) => (
                     <span
                       key={t}
                       className="px-2 py-0.5 rounded text-xs font-mono bg-surface text-muted border border-subtle"
@@ -109,15 +90,15 @@ export default function Projects() {
                   ))}
                 </div>
 
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 mt-auto">
                   {p.github && (
                     <a
                       href={p.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-sm text-secondary hover:text-primary transition-colors"
+                      className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border border-subtle text-secondary hover:text-primary hover:border-default transition-colors"
                     >
-                      <GithubIcon className="h-4 w-4" /> Code
+                      <GithubIcon className="h-3.5 w-3.5" /> Code
                     </a>
                   )}
                   {p.live && (
@@ -125,9 +106,9 @@ export default function Projects() {
                       href={p.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-sm text-secondary hover:text-primary transition-colors"
+                      className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full text-black bg-gradient-to-r from-[#7c5cff] to-[#00e5ff] hover:scale-105 transition-transform shadow-lg shadow-[#7c5cff]/20"
                     >
-                      <ExternalLink className="h-4 w-4" /> Live Demo
+                      <ExternalLink className="h-3.5 w-3.5" /> Live
                     </a>
                   )}
                   {p.telegram && (
@@ -135,9 +116,9 @@ export default function Projects() {
                       href={p.telegram}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-sm text-secondary hover:text-primary transition-colors"
+                      className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border border-subtle text-secondary hover:text-primary hover:border-default transition-colors"
                     >
-                      <TelegramIcon className="h-4 w-4" /> Telegram Bot
+                      <TelegramIcon className="h-3.5 w-3.5" /> Bot
                     </a>
                   )}
                 </div>
@@ -157,7 +138,7 @@ export default function Projects() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
                 variants={fadeUp}
-                className="rounded-2xl border border-subtle bg-surface p-5 hover:bg-surface-2 transition-colors"
+                className="group rounded-2xl border border-subtle bg-surface p-5 hover:bg-surface-2 hover:-translate-y-1 hover:shadow-xl transition-all duration-300"
               >
                 {p.image && (
                   <div className="relative mb-3 rounded-xl overflow-hidden border border-subtle aspect-[16/9] bg-surface-2">

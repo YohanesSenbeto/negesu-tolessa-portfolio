@@ -25,9 +25,35 @@ export default function Experience() {
           <h3 className="text-3xl md:text-4xl font-bold">Where I&apos;ve Worked</h3>
         </motion.div>
 
-        {/* Timeline */}
+        {/* Roadmap timeline — sinusoidal road with zigzag entries */}
         <div className="relative">
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#7c5cff] via-white/10 to-transparent md:-translate-x-1/2" />
+          {/* Gradient definition */}
+          <svg className="absolute h-0 w-0" aria-hidden="true">
+            <defs>
+              <linearGradient id="roadGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#7c5cff" stopOpacity="0.6" />
+                <stop offset="60%" stopColor="#00e5ff" />
+                <stop offset="100%" stopColor="#00e5ff" stopOpacity="0.3" />
+              </linearGradient>
+            </defs>
+          </svg>
+
+          {/* Sinusoidal road */}
+          <svg
+            className="absolute top-0 h-full w-8 md:w-12 left-5 md:left-1/2 -translate-x-1/2 pointer-events-none"
+            viewBox="0 0 60 400"
+            preserveAspectRatio="none"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M 30 0 Q 16 25 30 50 Q 48 75 30 100 Q 8 125 30 150 Q 56 175 30 200 Q 0 225 30 250 Q 64 275 30 300 Q -8 325 30 350 Q 72 375 30 400"
+              stroke="url(#roadGrad)"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
 
           {experiences.map((exp, i) => (
             <motion.div
@@ -37,24 +63,22 @@ export default function Experience() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5 }}
               variants={fadeUp}
-              className={`relative pl-12 md:pl-0 mb-10 md:grid md:grid-cols-2 md:gap-8 ${
+              className={`relative pl-12 md:pl-0 mb-8 last:mb-0 md:grid md:grid-cols-2 md:gap-10 ${
                 i % 2 === 0 ? "" : "md:[direction:rtl]"
               }`}
             >
-              {/* Dot */}
-              <div className="absolute left-4 md:left-1/2 top-1 w-3 h-3 rounded-full bg-[#7c5cff] ring-4 ring-[#7c5cff]/20 md:-translate-x-1/2" />
+              {/* Milestone node */}
+              <div className="absolute left-5 md:left-1/2 top-6 -translate-x-1/2 z-10">
+                <div className="w-4 h-4 rounded-full bg-gradient-to-br from-[#7c5cff] to-[#00e5ff] ring-4 ring-[#7c5cff]/15 shadow-lg shadow-[#7c5cff]/30" />
+              </div>
 
               <div
                 className={`md:[direction:ltr] ${
-                  i % 2 === 0 ? "md:pr-8 md:text-right" : "md:col-start-2 md:pl-8"
+                  i % 2 === 0 ? "md:pr-10" : "md:col-start-2 md:pl-10"
                 }`}
               >
-                <div className="rounded-2xl border border-subtle bg-surface p-5 hover:border-default transition-colors">
-                  <div
-                    className={`flex items-center gap-2 mb-1 ${
-                      i % 2 === 0 ? "md:justify-end" : ""
-                    }`}
-                  >
+                <div className="rounded-2xl border border-subtle bg-surface p-5 hover:border-default hover:-translate-y-0.5 transition-all duration-300">
+                  <div className="flex items-center gap-2 mb-1">
                     <Briefcase className="h-4 w-4 text-[#00e5ff]" />
                     <span className="text-sm text-muted">{exp.period}</span>
                   </div>
@@ -62,11 +86,7 @@ export default function Experience() {
                   <p className="text-[#7c5cff] text-sm mb-1">
                     {exp.company} · {exp.location}
                   </p>
-                  <ul
-                    className={`space-y-1 mt-2 ${
-                      i % 2 === 0 ? "md:text-left" : ""
-                    }`}
-                  >
+                  <ul className="space-y-1 mt-2">
                     {exp.points.map((pt) => (
                       <li
                         key={pt}

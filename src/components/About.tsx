@@ -65,7 +65,7 @@ export default function About() {
             variants={fadeUp}
           >
             <h2 className="text-sm font-mono text-[#7c5cff] mb-2">02 / SKILLS</h2>
-            <h3 className="text-3xl md:text-4xl font-bold mb-8">Tech Arsenal</h3>
+            <h3 className="text-3xl md:text-4xl font-bold mb-8">Tech Stack</h3>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">

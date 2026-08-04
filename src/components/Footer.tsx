@@ -15,6 +15,9 @@ export default function Footer() {
           <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-primary">
             LinkedIn
           </a>
+          <a href={profile.youtube} target="_blank" rel="noopener noreferrer" className="hover:text-primary">
+            YouTube
+          </a>
           <a href={`mailto:${profile.email}`} className="hover:text-primary">
             Email
           </a>

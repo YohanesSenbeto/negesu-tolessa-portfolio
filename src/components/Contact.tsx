@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Mail, MapPin, Send } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "@/components/BrandIcons";
+import { GithubIcon, LinkedinIcon, YoutubeIcon } from "@/components/BrandIcons";
 import { profile } from "@/lib/data";
 
 const fadeUp = {
@@ -88,6 +88,14 @@ export default function Contact() {
             className="p-3 rounded-full border border-default hover:bg-surface-2 transition-all"
           >
             <LinkedinIcon className="h-5 w-5" />
+          </a>
+          <a
+            href={profile.youtube}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 rounded-full border border-default hover:bg-surface-2 transition-all"
+          >
+            <YoutubeIcon className="h-5 w-5" />
           </a>
         </motion.div>
       </div>
