@@ -1,26 +1,114 @@
 @import "tailwindcss";
 
+@custom-variant light (&:where(.light, .light *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Dark theme (default) */
+  --bg: #07070b;
+  --fg: #ededf2;
+  --muted: #a0a0b0;
+  --faint: #6a6a7a;
+  --surface: rgba(255, 255, 255, 0.03);
+  --surface-2: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.1);
+  --border-2: rgba(255, 255, 255, 0.2);
+  --nav-bg: rgba(0, 0, 0, 0.6);
+  --grid-line: rgba(124, 92, 255, 0.07);
+  --track-bg: #07070b;
+  --track-thumb: #2a2a3a;
+}
+
+.light {
+  --bg: #f6f6fb;
+  --fg: #1a1a2e;
+  --muted: #555568;
+  --faint: #8a8a9a;
+  --surface: rgba(0, 0, 0, 0.025);
+  --surface-2: rgba(0, 0, 0, 0.05);
+  --border: rgba(0, 0, 0, 0.1);
+  --border-2: rgba(0, 0, 0, 0.18);
+  --nav-bg: rgba(255, 255, 255, 0.75);
+  --grid-line: rgba(124, 92, 255, 0.1);
+  --track-bg: #f6f6fb;
+  --track-thumb: #c8c8d8;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+  --color-accent: #7c5cff;
+  --color-accent-2: #00e5ff;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@layer utilities {
+  .text-primary { color: var(--fg); }
+  .text-secondary { color: var(--muted); }
+  .text-muted { color: var(--faint); }
+  .bg-surface { background-color: var(--surface); }
+  .bg-surface-2 { background-color: var(--surface-2); }
+  .border-subtle { border-color: var(--border); }
+  .border-default { border-color: var(--border-2); }
+}
+
+* {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.gradient-text {
+  background: linear-gradient(120deg, #7c5cff, #00e5ff, #7c5cff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.glow {
+  box-shadow: 0 0 40px -10px rgba(124, 92, 255, 0.5);
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--track-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--track-thumb);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7c5cff;
+}
+
+.noise::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
