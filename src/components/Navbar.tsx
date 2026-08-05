@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -87,7 +87,13 @@ export default function Navbar() {
                 <a
                   key={l.href}
                   href={l.href}
-                  onClick={() => setOpen(false)}
+                  onClick={(e: MouseEvent<HTMLAnchorElement>) => {
+                    e.preventDefault();
+                    setOpen(false);
+                    const el = document.querySelector(l.href);
+                    if (el)
+                      el.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }}
                   className="text-secondary hover:text-primary py-1"
                 >
                   {l.label}

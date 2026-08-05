@@ -78,7 +78,8 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ ok: true });
-  } catch {
+  } catch (err) {
+    console.error("[contact]", err);
     return NextResponse.json(
       { ok: false, error: "Server error. Please try again." },
       { status: 500 },

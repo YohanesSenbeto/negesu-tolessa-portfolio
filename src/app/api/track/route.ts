@@ -156,7 +156,8 @@ export async function POST(req: NextRequest) {
     await collection.insertOne(doc);
 
     return NextResponse.json({ ok: true });
-  } catch {
+  } catch (err) {
+    console.error("[track]", err);
     return NextResponse.json({ ok: false }, { status: 500 });
   }
 }
