@@ -40,7 +40,13 @@ type Geo = {
   longitude?: string;
 };
 
-async function geoFromIp(ip: string): Promise<Geo | undefined> {
+type Enrich = Geo & {
+  org?: string;
+  domain?: string;
+  asn?: string | number;
+};
+
+async function enrichFromIp(ip: string): Promise<Enrich | undefined> {
   try {
     const ctrl = new AbortController();
     const timer = setTimeout(() => ctrl.abort(), 4000);
@@ -56,14 +62,19 @@ async function geoFromIp(ip: string): Promise<Geo | undefined> {
       city?: string;
       latitude?: number | string;
       longitude?: number | string;
+      connection?: { org?: string; domain?: string; asn?: string | number };
     };
     if (!j.success) return undefined;
+    const conn = j.connection || {};
     return {
       country: j.country_code || undefined,
       region: j.region || undefined,
       city: j.city || undefined,
       latitude: j.latitude != null ? String(j.latitude) : undefined,
       longitude: j.longitude != null ? String(j.longitude) : undefined,
+      org: conn.org || undefined,
+      domain: conn.domain || undefined,
+      asn: conn.asn ?? undefined,
     };
   } catch {
     return undefined;
@@ -94,9 +105,30 @@ export async function POST(req: NextRequest) {
       longitude: header(req, "x-vercel-ip-longitude"),
     };
 
-    if (!geo.country && ip && isPublicIp(ip)) {
-      const looked = await geoFromIp(ip);
-      if (looked) geo = looked;
+    let network:
+      | { org?: string; domain?: string; asn?: string | number }
+      | undefined;
+
+    if (ip && isPublicIp(ip)) {
+      const enriched = await enrichFromIp(ip);
+      if (enriched) {
+        if (!geo.country) {
+          geo = {
+            country: enriched.country,
+            region: enriched.region,
+            city: enriched.city,
+            latitude: enriched.latitude,
+            longitude: enriched.longitude,
+          };
+        }
+        if (enriched.org || enriched.domain) {
+          network = {
+            org: enriched.org,
+            domain: enriched.domain,
+            asn: enriched.asn,
+          };
+        }
+      }
     }
 
     const doc = {
@@ -115,6 +147,7 @@ export async function POST(req: NextRequest) {
       },
       ipHash,
       geo,
+      network,
       ts: body.ts ? new Date(body.ts) : new Date(),
       createdAt: new Date(),
     };

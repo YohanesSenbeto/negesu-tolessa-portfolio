@@ -50,6 +50,18 @@ console.log(
     .toArray(),
 );
 
+const orgs = await col
+  .aggregate([
+    { $group: { _id: "$network.org", n: { $sum: 1 } } },
+    { $sort: { n: -1 } },
+    { $limit: 10 },
+  ])
+  .toArray();
+console.log(
+  "Top organizations:",
+  orgs.filter((o) => o._id),
+);
+
 console.log("\nRecent 5:");
 for (const d of await col.find().sort({ createdAt: -1 }).limit(5).toArray()) {
   console.log(JSON.stringify(d, null, 2));

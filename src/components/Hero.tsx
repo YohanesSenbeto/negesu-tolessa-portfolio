@@ -36,7 +36,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.05 }}
-          className="mb-8 flex flex-col items-center gap-3"
+          className="mb-8 flex justify-center"
         >
           <div className="relative w-40 h-40 md:w-56 md:h-56 rounded-full p-[3px] bg-gradient-to-br from-[#7c5cff] to-[#00e5ff] glow">
             <div className="w-full h-full rounded-full overflow-hidden bg-surface-2 flex items-center justify-center ring-1 ring-white/10">
@@ -60,12 +60,6 @@ export default function Hero() {
               </span>
             </div>
           </div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/flag_of_ethiopia.png"
-            alt="Ethiopia"
-            className="w-16 h-10 rounded shadow-lg ring-1 ring-black/10 object-cover"
-          />
         </motion.div>
 
         <motion.h1

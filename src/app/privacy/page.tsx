@@ -41,6 +41,10 @@ export default function PrivacyPage() {
                 address.
               </li>
               <li>
+                The visiting network/organization (e.g., company or ISP) and its
+                domain, inferred from your IP address.
+              </li>
+              <li>
                 A hashed version of your IP address — the raw IP is never stored.
               </li>
               <li>Referrer and timestamps.</li>
