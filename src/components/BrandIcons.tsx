@@ -29,3 +29,35 @@ export function YoutubeIcon({ className }: { className?: string }) {
     </svg>
   );
 }
+
+export function LogoMark({
+  className,
+  uid = "logo-grad",
+}: {
+  className?: string;
+  uid?: string;
+}) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} role="img" aria-label="Yohanes Senbeto logo">
+      <defs>
+        <linearGradient id={uid} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#7c5cff" />
+          <stop offset="100%" stopColor="#00e5ff" />
+        </linearGradient>
+      </defs>
+      <rect x="1" y="1" width="22" height="22" rx="6" fill={`url(#${uid})`} />
+      <text
+        x="12"
+        y="16.5"
+        textAnchor="middle"
+        fontSize="11"
+        fontWeight="700"
+        letterSpacing="0.5"
+        fill="#0a0a12"
+        fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
+      >
+        YS
+      </text>
+    </svg>
+  );
+}

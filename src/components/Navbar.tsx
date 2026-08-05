@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
+import { LogoMark } from "@/components/BrandIcons";
 
 const links = [
   { label: "About", href: "#about" },
@@ -36,8 +37,9 @@ export default function Navbar() {
       style={scrolled ? { backgroundColor: "var(--nav-bg)" } : undefined}
     >
       <nav className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
-        <a href="#top" className="font-bold text-lg tracking-tight">
-          <span className="gradient-text">YS</span>
+        <a href="#home" className="flex items-center gap-2 font-bold tracking-tight">
+          <LogoMark className="h-8 w-8 shrink-0" uid="logo-nav" />
+          <span className="gradient-text text-lg">Yohanes</span>
         </a>
 
         <div className="hidden md:flex items-center gap-7">

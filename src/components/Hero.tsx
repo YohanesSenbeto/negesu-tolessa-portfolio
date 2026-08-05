@@ -2,13 +2,13 @@
 
 import { motion } from "framer-motion";
 import { MapPin, ArrowDown, Mail } from "lucide-react";
-import { GithubIcon, LinkedinIcon, YoutubeIcon } from "@/components/BrandIcons";
+import { GithubIcon, LinkedinIcon, YoutubeIcon, LogoMark } from "@/components/BrandIcons";
 import { profile } from "@/lib/data";
 
 export default function Hero() {
   return (
     <section
-      id="top"
+      id="home"
       className="relative min-h-screen flex items-center justify-center grid-bg overflow-hidden"
     >
       {/* Glow orbs */}
@@ -36,7 +36,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.05 }}
-          className="mb-8 flex justify-center"
+          className="mb-8 flex flex-col items-center gap-3"
         >
           <div className="relative w-40 h-40 md:w-56 md:h-56 rounded-full p-[3px] bg-gradient-to-br from-[#7c5cff] to-[#00e5ff] glow">
             <div className="w-full h-full rounded-full overflow-hidden bg-surface-2 flex items-center justify-center ring-1 ring-white/10">
@@ -53,13 +53,19 @@ export default function Hero() {
                 }}
               />
               <span
-                className="text-5xl font-bold gradient-text"
+                className="flex items-center justify-center"
                 style={{ display: "none" }}
               >
-                YS
+                <LogoMark className="h-16 w-16 md:h-20 md:w-20" uid="logo-hero" />
               </span>
             </div>
           </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/flag_of_ethiopia.png"
+            alt="Ethiopia"
+            className="w-16 h-10 rounded shadow-lg ring-1 ring-black/10 object-cover"
+          />
         </motion.div>
 
         <motion.h1
