@@ -14,6 +14,15 @@ const links = [
   { label: "Contact", href: "#contact" },
 ];
 
+const NAV_OFFSET = 72;
+
+function goToSection(href: string) {
+  const el = document.querySelector(href) as HTMLElement | null;
+  if (!el) return;
+  const y = el.getBoundingClientRect().top + window.scrollY - NAV_OFFSET;
+  window.scrollTo({ top: Math.max(y, 0), behavior: "smooth" });
+}
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -23,6 +32,21 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const onNavClick =
+    (href: string) => (e: MouseEvent<HTMLAnchorElement>) => {
+      e.preventDefault();
+      const wasOpen = open;
+      setOpen(false);
+      if (wasOpen) {
+        // Mobile: the menu exit animation animates `height` from auto, which
+        // forces layout reflows that cancel the in-flight smooth scroll on
+        // mobile browsers. Wait for the animation to finish before scrolling.
+        setTimeout(() => goToSection(href), 220);
+      } else {
+        goToSection(href);
+      }
+    };
 
   return (
     <motion.header
@@ -37,7 +61,11 @@ export default function Navbar() {
       style={scrolled ? { backgroundColor: "var(--nav-bg)" } : undefined}
     >
       <nav className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-2 font-bold tracking-tight">
+        <a
+          href="#home"
+          onClick={onNavClick("#home")}
+          className="flex items-center gap-2 font-bold tracking-tight"
+        >
           <LogoMark className="h-8 w-8 shrink-0" uid="logo-nav" />
           <span className="gradient-text text-lg">Yohanes</span>
         </a>
@@ -47,6 +75,7 @@ export default function Navbar() {
             <a
               key={l.href}
               href={l.href}
+              onClick={onNavClick(l.href)}
               className="text-sm text-secondary hover:text-primary transition-colors"
             >
               {l.label}
@@ -54,6 +83,7 @@ export default function Navbar() {
           ))}
           <a
             href="#contact"
+            onClick={onNavClick("#contact")}
             className="text-sm font-medium px-4 py-2 rounded-full bg-surface-2 border border-subtle hover:bg-surface-2 transition-all"
           >
             Hire me
@@ -68,7 +98,7 @@ export default function Navbar() {
             onClick={() => setOpen(!open)}
             aria-label="Menu"
           >
-          {open ? <X /> : <Menu />}
+            {open ? <X /> : <Menu />}
           </button>
         </div>
       </nav>
@@ -79,6 +109,7 @@ export default function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
             className="md:hidden overflow-hidden backdrop-blur-xl border-b border-subtle"
             style={{ backgroundColor: "var(--nav-bg)" }}
           >
@@ -87,13 +118,7 @@ export default function Navbar() {
                 <a
                   key={l.href}
                   href={l.href}
-                  onClick={(e: MouseEvent<HTMLAnchorElement>) => {
-                    e.preventDefault();
-                    setOpen(false);
-                    const el = document.querySelector(l.href);
-                    if (el)
-                      el.scrollIntoView({ behavior: "smooth", block: "start" });
-                  }}
+                  onClick={onNavClick(l.href)}
                   className="text-secondary hover:text-primary py-1"
                 >
                   {l.label}
