@@ -2,7 +2,7 @@ import Link from "next/link";
 import { profile } from "@/lib/data";
 
 export const metadata = {
-  title: "Privacy Terms — Yohanes Senbeto",
+  title: "Privacy Terms",
   description:
     "Privacy terms for cookies and analytics on this portfolio site.",
 };

@@ -1,23 +1,35 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { Moon, Sun } from "lucide-react";
 
-export default function ThemeToggle() {
-  const [light, setLight] = useState(false);
+const listeners = new Set<() => void>();
 
-  useEffect(() => {
-    const stored = localStorage.getItem("theme");
-    const isLight = stored === "light";
-    setLight(isLight);
-    document.documentElement.classList.toggle("light", isLight);
-  }, []);
+function subscribe(listener: () => void) {
+  listeners.add(listener);
+  return () => {
+    listeners.delete(listener);
+  };
+}
+
+function getSnapshot() {
+  return document.documentElement.classList.contains("light");
+}
+
+function getServerSnapshot() {
+  return false;
+}
+
+export default function ThemeToggle() {
+  // The inline script in the layout applies the stored theme class before
+  // hydration; the DOM class is the source of truth for the snapshot.
+  const light = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const toggle = () => {
     const next = !light;
-    setLight(next);
     document.documentElement.classList.toggle("light", next);
     localStorage.setItem("theme", next ? "light" : "dark");
+    listeners.forEach((l) => l());
   };
 
   return (

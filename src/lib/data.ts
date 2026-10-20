@@ -7,7 +7,7 @@ export const profile = {
   linkedin: "https://linkedin.com/in/yohanes-senbeto",
   github: "https://github.com/YohanesSenbeto",
   youtube: "https://www.youtube.com/@Yoh-Tech-Solutions",
-  portfolio: "https://ip-toolkit-pro.vercel.app/",
+  portfolio: "https://fbb-ip.vercel.app/",
   company: "Ethio Telecom",
   photo: "/comman%20my_profile.jpg",
   summary:
@@ -62,7 +62,7 @@ export type Project = {
   featured: boolean;
 };
 
-export const projects: Project[] = [
+const allProjects: Project[] = [
   {
     name: "AI-Powered Preventive Maintenance Management System",
     description:
@@ -138,7 +138,7 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    name: "IP Toolkit Pro",
+    name: "FBB IP Fetcher",
     description:
       "Ethio Telecom enterprise platform for WAN IP analysis, IP pool management, and router configuration.",
     longDescription:
@@ -149,11 +149,11 @@ export const projects: Project[] = [
       "Router config generator + technician tutorials",
       "Telegram bot sidecar for field operations",
     ],
-    live: "https://ip-toolkit-pro.vercel.app/",
+    live: "https://fbbip.etdevs.et/",
     telegram: "https://t.me/YohTechSolutions_bot",
     highlight: "Enterprise · Live",
     category: "Enterprise",
-    image: "/ip%20tool.png",
+    image: "/FBB%20IP%20Fetcher.png",
     featured: true,
   },
   {
@@ -209,6 +209,11 @@ export const projects: Project[] = [
     image: "/youtube%20content.png",
     featured: true,
   },
+];
+
+export const projects: Project[] = [
+  ...allProjects.filter((p) => p.image),
+  ...allProjects.filter((p) => !p.image),
 ];
 
 export type Experience = {
