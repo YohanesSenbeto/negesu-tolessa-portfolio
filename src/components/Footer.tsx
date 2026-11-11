@@ -20,7 +20,7 @@ export default function Footer() {
             <div className="flex items-center gap-2.5">
               <LogoMark className="h-10 w-10" uid="nt-logo-footer" />
               <div>
-                <p className="font-display text-lg font-bold text-ink">{profile.name}</p>
+                <p className="font-display text-lg font-bold text-ink">NegTol<span className="text-brand">.</span></p>
                 <p className="text-xs uppercase tracking-[0.18em] text-brand mt-0.5">
                   Sales &amp; Marketing Leader
                 </p>

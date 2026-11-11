@@ -3,6 +3,7 @@
 import { useEffect, useState, type MouseEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
+import { LogoMark } from "@/components/BrandIcons";
 
 const links = [
   { label: "Home", href: "#home" },
@@ -49,16 +50,16 @@ export default function Navbar() {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-line bg-bg/85 backdrop-blur-xl shadow-[0_10px_30px_-20px_rgba(0,0,0,0.8)]"
+          ? "border-b border-line bg-bg/85 backdrop-blur-xl shadow-[0_10px_30px_-18px_rgba(23,23,31,0.18)]"
           : "bg-transparent"
       }`}
     >
       <nav className="container-x h-[76px] flex items-center justify-between">
-        <a href="#home" onClick={onNavClick("#home")} className="flex items-center gap-1.5 group">
+        <a href="#home" onClick={onNavClick("#home")} className="flex items-center gap-2 group">
+          <LogoMark className="h-9 w-9" uid="nt-logo-nav" />
           <span className="font-display text-2xl font-extrabold tracking-tight text-ink">
-            Negesu
+            NegTol<span className="text-brand">.</span>
           </span>
-          <span className="font-display text-2xl font-extrabold text-brand leading-none">.</span>
         </a>
 
         <div className="hidden md:flex items-center gap-8">

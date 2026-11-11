@@ -42,7 +42,7 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: (i % 2) * 0.1 }}
-                className={`group card p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_26px_54px_-34px_rgba(0,0,0,0.9)] ${a.border}`}
+                className={`group card p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_26px_54px_-34px_rgba(23,23,31,0.18)] ${a.border}`}
               >
                 <div className="flex items-center gap-4">
                   <span className={`grid h-14 w-14 shrink-0 place-items-center rounded-2xl ${a.chip}`}>

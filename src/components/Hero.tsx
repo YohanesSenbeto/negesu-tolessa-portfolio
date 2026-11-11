@@ -17,18 +17,11 @@ const item: Variants = {
 export default function Hero() {
   return (
     <section id="home" className="relative overflow-hidden pt-28 pb-16 md:pt-32 md:pb-24">
-      {/* Ambient background */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-20 right-[-8%] h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle,rgba(255,90,31,0.20),transparent_62%)] blur-2xl" />
-        <div className="absolute bottom-[-12rem] left-[-10rem] h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(255,138,76,0.20),transparent_62%)] blur-2xl" />
-        <div
-          className="absolute inset-0 opacity-[0.35]"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
-          }}
-        />
+      {/* Ambient pastel wash — Dizme-style light hero */}
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute -top-24 right-[-6%] h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle,rgba(255,138,61,0.22),transparent_62%)] blur-2xl" />
+        <div className="absolute -top-28 left-[-8%] h-[32rem] w-[32rem] rounded-full bg-[radial-gradient(circle,rgba(255,182,193,0.30),transparent_62%)] blur-2xl" />
+        <div className="absolute bottom-[-14rem] left-[-6rem] h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(147,197,253,0.26),transparent_62%)] blur-2xl" />
       </div>
 
       <div className="container-x">
@@ -42,10 +35,10 @@ export default function Hero() {
           >
             <div className="relative">
               {/* dotted / glow ring */}
-              <div className="absolute -inset-5 rounded-full border border-dashed border-white/15" />
-              <div className="absolute -inset-10 rounded-full bg-[radial-gradient(circle,rgba(255,90,31,0.22),transparent_65%)] blur-xl" />
-              <div className="relative h-72 w-72 sm:h-80 sm:w-80 lg:h-[27rem] lg:w-[27rem] rounded-full p-[5px] bg-gradient-to-br from-brand via-purple to-green shadow-[0_30px_80px_-30px_rgba(255,90,31,0.55)]">
-                <div className="h-full w-full overflow-hidden rounded-full bg-surface ring-1 ring-white/10">
+              <div className="absolute -inset-5 rounded-full border border-dashed border-black/10" />
+              <div className="absolute -inset-10 rounded-full bg-[radial-gradient(circle,rgba(255,90,31,0.18),transparent_65%)] blur-xl" />
+              <div className="relative h-72 w-72 sm:h-80 sm:w-80 lg:h-[27rem] lg:w-[27rem] rounded-full p-[5px] bg-gradient-to-br from-brand via-purple to-green shadow-[0_30px_70px_-30px_rgba(255,90,31,0.45)]">
+                <div className="h-full w-full overflow-hidden rounded-full bg-surface ring-1 ring-line">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={profile.photo}
@@ -60,9 +53,9 @@ export default function Hero() {
                 initial={{ opacity: 0, y: -12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.55 }}
-                className="absolute -left-3 top-6 flex items-center gap-2 rounded-xl border border-line bg-surface/95 px-3 py-2 shadow-xl backdrop-blur"
+                className="absolute -left-3 top-6 flex items-center gap-2 rounded-xl border border-line bg-surface px-3 py-2 shadow-lg"
               >
-                <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand/15 text-brand font-display font-bold text-sm">
+                <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand/12 text-brand font-display font-bold text-sm">
                   10+
                 </span>
                 <span className="text-xs font-semibold text-ink leading-tight">
@@ -74,9 +67,9 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
-                className="absolute -right-3 bottom-8 flex items-center gap-2 rounded-xl border border-line bg-surface/95 px-3 py-2 shadow-xl backdrop-blur"
+                className="absolute -right-3 bottom-8 flex items-center gap-2 rounded-xl border border-line bg-surface px-3 py-2 shadow-lg"
               >
-                <span className="grid h-8 w-8 place-items-center rounded-lg bg-green/15 text-green">
+                <span className="grid h-8 w-8 place-items-center rounded-lg bg-green/12 text-green">
                   <WhatsappIcon className="h-4 w-4" />
                 </span>
                 <span className="text-xs font-semibold text-ink leading-tight">
@@ -104,7 +97,7 @@ export default function Hero() {
               variants={item}
               className="mt-4 font-display text-xl md:text-2xl font-semibold text-ink"
             >
-              A <span className="text-green">Sales &amp; Marketing Leader</span> From Ambo, Ethiopia
+              A <span className="text-brand">Sales &amp; Marketing Leader</span> From Ambo, Ethiopia
             </motion.p>
 
             <motion.p
@@ -127,7 +120,7 @@ export default function Hero() {
               className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3"
             >
               <a href="#contact" className="btn-primary">
-                Hire Me <ArrowUpRight className="h-4 w-4" />
+                Contact Me <ArrowUpRight className="h-4 w-4" />
               </a>
               <div className="flex items-center gap-2">
                 {[
