@@ -18,20 +18,22 @@
 }
 
 :root {
-  /* Dizme-inspired dark theme — charcoal + orange + purple */
+  /* Brand: dark charcoal + a single orange & white palette */
   --bg: #14141d;
   --bg-2: #1a1a26;
   --surface: #20202d;
   --surface-2: #272736;
-  --ink: #f2f2f8;
-  --muted: #a2a2b8;
+  --ink: #f6f6f8;
+  --muted: #b3b3c2;
   --line: rgba(255, 255, 255, 0.09);
 
-  --brand: #ff4b3e;
-  --brand-2: #e63c30;
-  --purple: #8b5cf6;
-  --green: #25c78b;
-  --cream: #f6f1e6;
+  --brand: #ff5a1f;      /* primary orange */
+  --brand-2: #e8480f;    /* deeper orange (hover) */
+  /* secondary accents kept in the same orange family so the whole
+     site reads as one orange + white brand */
+  --purple: #ff8a4c;     /* light orange */
+  --green: #ffb37a;      /* pale orange */
+  --cream: #ffffff;
 }
 
 * {
@@ -95,7 +97,7 @@ body {
   }
 
   .text-gradient {
-    background: linear-gradient(100deg, var(--brand) 0%, var(--purple) 110%);
+    background: linear-gradient(100deg, var(--brand) 0%, #ffb37a 55%, #ffffff 115%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -125,7 +127,7 @@ body {
     font-weight: 600;
     font-size: 0.95rem;
     line-height: 1;
-    box-shadow: 0 16px 34px -14px rgba(255, 75, 62, 0.7);
+    box-shadow: 0 16px 34px -14px rgba(255, 90, 31, 0.7);
     transition:
       transform 0.25s ease,
       background 0.25s ease,
@@ -134,7 +136,7 @@ body {
   .btn-primary:hover {
     background: var(--brand-2);
     transform: translateY(-2px);
-    box-shadow: 0 22px 44px -16px rgba(255, 75, 62, 0.75);
+    box-shadow: 0 22px 44px -16px rgba(255, 90, 31, 0.75);
   }
 
   .btn-outline {
@@ -157,7 +159,7 @@ body {
   }
   .btn-outline:hover {
     border-color: var(--brand);
-    background: rgba(255, 75, 62, 0.1);
+    background: rgba(255, 90, 31, 0.1);
     transform: translateY(-2px);
   }
 

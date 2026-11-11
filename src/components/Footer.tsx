@@ -13,7 +13,7 @@ const nav = [
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-line bg-bg">
-      <div className="pointer-events-none absolute -top-24 right-0 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(255,75,62,0.12),transparent_65%)] blur-2xl" />
+      <div className="pointer-events-none absolute -top-24 right-0 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(255,90,31,0.12),transparent_65%)] blur-2xl" />
       <div className="container-x relative py-14">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>

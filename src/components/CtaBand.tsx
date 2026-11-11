@@ -12,7 +12,7 @@ export default function CtaBand() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-purple to-[#6d3bd6] px-6 py-10 md:px-14 md:py-14"
+          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand to-[#ff8a4c] px-6 py-10 md:px-14 md:py-14"
         >
           <div className="pointer-events-none absolute -right-10 -top-10 h-56 w-56 rounded-full bg-white/10 blur-2xl" />
           <div className="pointer-events-none absolute -bottom-16 left-1/3 h-56 w-56 rounded-full bg-brand/30 blur-2xl" />
@@ -31,7 +31,7 @@ export default function CtaBand() {
             </div>
             <a
               href="#contact"
-              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 font-semibold text-purple transition-transform hover:-translate-y-0.5"
+              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 font-semibold text-brand transition-transform hover:-translate-y-0.5"
             >
               Start a conversation <ArrowUpRight className="h-4 w-4" />
             </a>

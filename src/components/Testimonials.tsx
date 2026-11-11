@@ -8,7 +8,7 @@ export default function Testimonials() {
   return (
     <section className="relative py-20 md:py-28 overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute top-1/2 left-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,75,62,0.14),transparent_65%)] blur-2xl" />
+        <div className="absolute top-1/2 left-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,90,31,0.14),transparent_65%)] blur-2xl" />
       </div>
 
       <div className="container-x">

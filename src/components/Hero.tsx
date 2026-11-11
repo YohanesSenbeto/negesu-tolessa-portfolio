@@ -19,8 +19,8 @@ export default function Hero() {
     <section id="home" className="relative overflow-hidden pt-28 pb-16 md:pt-32 md:pb-24">
       {/* Ambient background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-20 right-[-8%] h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle,rgba(255,75,62,0.20),transparent_62%)] blur-2xl" />
-        <div className="absolute bottom-[-12rem] left-[-10rem] h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.20),transparent_62%)] blur-2xl" />
+        <div className="absolute -top-20 right-[-8%] h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle,rgba(255,90,31,0.20),transparent_62%)] blur-2xl" />
+        <div className="absolute bottom-[-12rem] left-[-10rem] h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(255,138,76,0.20),transparent_62%)] blur-2xl" />
         <div
           className="absolute inset-0 opacity-[0.35]"
           style={{
@@ -43,8 +43,8 @@ export default function Hero() {
             <div className="relative">
               {/* dotted / glow ring */}
               <div className="absolute -inset-5 rounded-full border border-dashed border-white/15" />
-              <div className="absolute -inset-10 rounded-full bg-[radial-gradient(circle,rgba(255,75,62,0.22),transparent_65%)] blur-xl" />
-              <div className="relative h-72 w-72 sm:h-80 sm:w-80 lg:h-[27rem] lg:w-[27rem] rounded-full p-[5px] bg-gradient-to-br from-brand via-purple to-green shadow-[0_30px_80px_-30px_rgba(255,75,62,0.55)]">
+              <div className="absolute -inset-10 rounded-full bg-[radial-gradient(circle,rgba(255,90,31,0.22),transparent_65%)] blur-xl" />
+              <div className="relative h-72 w-72 sm:h-80 sm:w-80 lg:h-[27rem] lg:w-[27rem] rounded-full p-[5px] bg-gradient-to-br from-brand via-purple to-green shadow-[0_30px_80px_-30px_rgba(255,90,31,0.55)]">
                 <div className="h-full w-full overflow-hidden rounded-full bg-surface ring-1 ring-white/10">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img

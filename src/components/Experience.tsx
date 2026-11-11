@@ -46,7 +46,7 @@ export default function Experience() {
                 <span className={`h-2.5 w-2.5 rounded-full ${exp.current ? "bg-brand" : "bg-purple"}`} />
               </span>
 
-              <div className="card p-6 md:p-7 transition-all duration-300 hover:border-brand/40 hover:shadow-[0_24px_50px_-32px_rgba(255,75,62,0.35)]">
+              <div className="card p-6 md:p-7 transition-all duration-300 hover:border-brand/40 hover:shadow-[0_24px_50px_-32px_rgba(255,90,31,0.35)]">
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
                   <span className="tag font-medium">{exp.period}</span>
                   {exp.current && (

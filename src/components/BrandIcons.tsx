@@ -30,8 +30,8 @@ export function LogoMark({
     >
       <defs>
         <linearGradient id={uid} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#ff4b3e" />
-          <stop offset="100%" stopColor="#8b5cf6" />
+          <stop offset="0%" stopColor="#ff5a1f" />
+          <stop offset="100%" stopColor="#ffb37a" />
         </linearGradient>
       </defs>
       <rect x="0" y="0" width="40" height="40" rx="11" fill={`url(#${uid})`} />
