@@ -107,11 +107,23 @@ export default function Footer() {
           <p>
             © {new Date().getFullYear()} {profile.name}. All rights reserved.
           </p>
-          <p>
-            Built with Next.js · Deployed on Vercel ·{" "}
+          <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+            <span>Built with Next.js · Deployed on Vercel ·</span>
             <a href="/privacy" className="hover:text-brand">
               Privacy
             </a>
+            <span className="text-muted/40">·</span>
+            <span>
+              Developed by <span className="font-semibold text-ink">@Joni</span> · Telegram{" "}
+              <a
+                href="https://t.me/jovanis"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-brand hover:underline"
+              >
+                @jovanis
+              </a>
+            </span>
           </p>
         </div>
       </div>

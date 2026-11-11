@@ -26,39 +26,35 @@ export default function Hero() {
 
       <div className="container-x">
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-10 items-center">
-          {/* Portrait — first on mobile so it is always visible */}
+          {/* Portrait cut-out — Dizme style, first on mobile so it is always visible */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-            className="order-first lg:order-2 relative mx-auto flex justify-center"
+            className="order-first lg:order-2 relative mx-auto flex justify-center lg:justify-end"
           >
-            <div className="relative">
-              {/* dotted / glow ring */}
-              <div className="absolute -inset-5 rounded-full border border-dashed border-black/10" />
-              <div className="absolute -inset-10 rounded-full bg-[radial-gradient(circle,rgba(255,90,31,0.18),transparent_65%)] blur-xl" />
-              <div className="relative h-72 w-72 sm:h-80 sm:w-80 lg:h-[27rem] lg:w-[27rem] rounded-full p-[5px] bg-gradient-to-br from-brand via-purple to-green shadow-[0_30px_70px_-30px_rgba(255,90,31,0.45)]">
-                <div className="h-full w-full overflow-hidden rounded-full bg-surface ring-1 ring-line">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={profile.photo}
-                    alt={`${profile.name} — ${profile.title}`}
-                    className="h-full w-full object-cover object-top"
-                  />
-                </div>
-              </div>
+            <div className="relative flex items-end justify-center">
+              {/* soft pastel shape behind the cut-out */}
+              <div className="absolute bottom-4 left-1/2 -z-0 h-[78%] w-[72%] -translate-x-1/2 rounded-t-[3rem] bg-gradient-to-b from-brand/12 via-[#ffd9c7]/50 to-transparent" />
 
-              {/* floating badges */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/negesu/portrait-cutout.png"
+                alt={`${profile.name} — ${profile.title}`}
+                className="relative z-10 mx-auto h-[26rem] w-auto max-w-full object-contain object-bottom drop-shadow-[0_30px_35px_rgba(23,23,31,0.18)] sm:h-[32rem] lg:h-[38rem]"
+              />
+
+              {/* floating icon badges */}
               <motion.div
                 initial={{ opacity: 0, y: -12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.55 }}
-                className="absolute -left-3 top-6 flex items-center gap-2 rounded-xl border border-line bg-surface px-3 py-2 shadow-lg"
+                className="absolute left-0 top-8 z-20 flex items-center gap-2 rounded-xl border border-line bg-surface/95 px-3 py-2 shadow-lg backdrop-blur"
               >
-                <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand/12 text-brand font-display font-bold text-sm">
+                <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand text-sm font-bold text-white">
                   10+
                 </span>
-                <span className="text-xs font-semibold text-ink leading-tight">
+                <span className="text-xs font-semibold leading-tight text-ink">
                   Years<br />Experience
                 </span>
               </motion.div>
@@ -67,12 +63,12 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
-                className="absolute -right-3 bottom-8 flex items-center gap-2 rounded-xl border border-line bg-surface px-3 py-2 shadow-lg"
+                className="absolute right-0 top-28 z-20 flex items-center gap-2 rounded-xl border border-line bg-surface/95 px-3 py-2 shadow-lg backdrop-blur"
               >
                 <span className="grid h-8 w-8 place-items-center rounded-lg bg-green/12 text-green">
                   <WhatsappIcon className="h-4 w-4" />
                 </span>
-                <span className="text-xs font-semibold text-ink leading-tight">
+                <span className="text-xs font-semibold leading-tight text-ink">
                   M-PESA<br />Growth
                 </span>
               </motion.div>
