@@ -1,219 +1,135 @@
 export const profile = {
-  name: "Yohanes Senbeto",
-  title: "Full-Stack Software Engineer",
-  tagline: "Building scalable internal tools & enterprise platforms",
-  location: "Addis Ababa, Ethiopia",
-  email: "jonicasenbeto@gmail.com",
-  linkedin: "https://linkedin.com/in/yohanes-senbeto",
-  github: "https://github.com/YohanesSenbeto",
-  youtube: "https://www.youtube.com/@Yoh-Tech-Solutions",
-  portfolio: "https://fbb-ip.vercel.app/",
-  company: "Ethio Telecom",
-  photo: "/comman%20my_profile.jpg",
+  name: "Negesu Tolessa Likasa",
+  shortName: "Negesu Tolessa",
+  firstName: "Negesu",
+  lastName: "Tolessa",
+  initials: "NT",
+  title: "Regional Sales Manager · Telecom & Digital Financial Services",
+  roleLine: "A Sales & Marketing Leader From Ambo, Ethiopia",
+  headline:
+    "I turn ambitious sales targets into market leadership — through people, distribution, and the growth of M-PESA.",
+  tagline:
+    "Sales & marketing leader with 10+ years turning regional targets into market leadership across Safaricom and Ethio Telecom.",
+  location: "Ambo, Oromia, Ethiopia",
+  phones: ["+251 917 837 779", "+251 799 337 779"],
+  phoneLinks: ["+251917837779", "+251799337779"],
+  whatsapp: "251917837779",
+  email: "nagasu.tolessa@gmail.com",
+  linkedin: "https://www.linkedin.com/in/negesu-tolessa-250359221",
+  photo: "/images/negesu/portrait.jpg",
+  company: "Safaricom Telecommunications Ethiopia PLC",
   summary:
-    "Full-stack developer at Ethio Telecom, passionate about building scalable internal tools. Experienced in React, Next.js, TypeScript, Prisma, and PostgreSQL. Strong problem-solver and rapid learner with a track record of delivering impactful solutions for enterprise clients. Also a content creator on YouTube (Yoh-Tech Solutions) sharing tech tutorials.",
+    "Results-oriented Sales and Marketing professional with over 10 years of experience across telecommunications, sales management, customer service, and team leadership. I specialise in market expansion, distribution management, M-PESA growth, digital financial services, and operational excellence — pairing strong leadership and analytical thinking with a track record of consistently hitting targets and building high-performing teams.",
+  available: "Open to senior sales & commercial leadership roles",
   stats: [
-    { label: "Years Experience", value: "9+" },
-    { label: "Projects Shipped", value: "12+" },
-    { label: "Users Served", value: "347+" },
-    { label: "Teams Enabled", value: "82" },
+    { value: "10+", label: "Years in telecom sales" },
+    { value: "3", label: "Promotions earned" },
+    { value: "M-PESA", label: "Digital finance growth" },
+    { value: "MBA", label: "Postgraduate qualified" },
   ],
 };
 
-export const skills = [
-  {
-    category: "Languages",
-    items: ["TypeScript", "JavaScript", "Python", "C", "SQL"],
-  },
-  {
-    category: "Frameworks",
-    items: ["React", "Next.js", "Node.js", "Express", "NestJS"],
-  },
-  {
-    category: "AI & Machine Learning",
-    items: ["Generative AI", "Large Language Model", "OpenAI", "Gemini", "pgvector", "RAG"],
-  },
-  {
-    category: "Databases",
-    items: ["PostgreSQL", "MySQL", "MongoDB", "Prisma ORM", "TypeORM"],
-  },
-  {
-    category: "DevOps & Cloud",
-    items: ["Docker", "Nginx", "AWS", "Google Cloud", "Shell Scripting"],
-  },
-  {
-    category: "Tools & Practices",
-    items: ["NextAuth", "Tailwind CSS", "Zod", "Vitest", "Playwright", "Swagger"],
-  },
-];
-
-export type Project = {
-  name: string;
+export type Expertise = {
+  title: string;
   description: string;
-  longDescription: string;
-  tech: string[];
-  features: string[];
-  github?: string;
-  live?: string;
-  telegram?: string;
-  image?: string;
-  highlight: string;
-  category: "Full-Stack" | "Enterprise" | "GIS" | "CLI" | "Creative" | "AI";
-  featured: boolean;
+  icon:
+    | "distribution"
+    | "leadership"
+    | "mpesa"
+    | "growth"
+    | "customer"
+    | "analytics";
+  items: string[];
 };
 
-const allProjects: Project[] = [
+export const expertise: Expertise[] = [
   {
-    name: "AI-Powered Preventive Maintenance Management System",
+    title: "Sales & Distribution",
     description:
-      "Full-stack preventive maintenance platform for telecom infrastructure with 10 AI automation features and multi-provider LLM integration.",
-    longDescription:
-      "Built a full-stack preventive maintenance platform for telecom infrastructure with 10 AI automation features: predictive failure forecasting, telemetry anomaly detection, RAG-powered copilot assistant, AI work-order prioritization, automated checklist generation, executive report summarization, and root-cause analysis. Integrated multi-provider LLMs (OpenAI/Gemini) with pgvector semantic search, cost tracking, and budget guards.",
-    tech: ["Next.js", "React", "TypeScript", "Prisma", "PostgreSQL", "Docker", "OpenAI", "Gemini", "pgvector"],
-    features: [
-      "Predictive failure forecasting & telemetry anomaly detection",
-      "RAG-powered copilot assistant with pgvector semantic search",
-      "AI work-order prioritization, checklist generation & report summarization",
-      "Multi-provider LLMs (OpenAI/Gemini) with cost tracking & budget guards",
-      "RBAC, AD/LDAP auth & CSP-secured headers",
+      "Building route-to-market systems that move product and hit number, region after region.",
+    icon: "distribution",
+    items: [
+      "Sales & Distribution Management",
+      "Territory & Channel Strategy",
+      "Target Achievement",
+      "Market Expansion",
     ],
-    github: "https://github.com/YohanesSenbeto",
-    highlight: "AI · 10 Automation Features",
-    category: "AI",
-    image: "/PM%20Assistant%20AI.png",
-    live: "https://pm.ethiotelecom.et/",
-    featured: true,
   },
   {
-    name: "Online Bus Ticket Reservation MS",
+    title: "Leadership & Coaching",
     description:
-      "Full-featured bus ticketing platform with Ethiopian payment gateway integration and fleet management.",
-    longDescription:
-      "A BSc graduation project enabling passengers to search trips, select seats, book, and pay via Telebirr/CBE Birr/M-Birr through Chapa. Staff and admins manage buses, routes, trips, stations, garages, and vehicle maintenance with role-based access.",
-    tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "NextAuth", "Chapa", "Tailwind"],
-    features: [
-      "Chapa payment integration with digital PDF receipts",
-      "Role-based fleet management (admin/staff/driver/mechanic)",
-      "Seat selection, QR codes, Excel export, AI assist",
+      "Leading, coaching, and holding high-performing teams accountable to clear KPIs.",
+    icon: "leadership",
+    items: [
+      "Team Leadership",
+      "Coaching & Mentoring",
+      "Performance Management",
+      "KPI Monitoring",
     ],
-    github: "https://github.com/YohanesSenbeto",
-    highlight: "Graduation Project",
-    category: "Full-Stack",
-    featured: true,
   },
   {
-    name: "Preventive Maintenance Tasks System",
+    title: "M-PESA & Digital Finance",
     description:
-      "Enterprise internal tool used by 347 users across 82 teams at Ethio Telecom to manage maintenance tasks.",
-    longDescription:
-      "Replaced manual spreadsheets and phone calls with a unified dashboard. Supports rich staff/supervisor relationships, regions/zones/teams, weekly auto-scheduling, and bulk staff import from JSON/XLSX.",
-    tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "NextAuth", "ExcelJS", "OpenAI"],
-    features: [
-      "Staff/role/region/zone/team hierarchy with supervisor relations",
-      "Automated weekly task scheduling",
-      "XLSX/JSON bulk import + seeding for 347 users",
+      "Driving adoption and growth of mobile money, agents, and digital financial services.",
+    icon: "mpesa",
+    items: [
+      "M-PESA Operations",
+      "Agent & Merchant Networks",
+      "Digital Financial Services",
+      "Customer Onboarding",
     ],
-    github: "https://github.com/YohanesSenbeto",
-    highlight: "Production · 347 users",
-    category: "Enterprise",
-    image: "/PM%20full%20page.png",
-    live: "https://pm.ethiotelecom.et/",
-    featured: true,
   },
   {
-    name: "Digital Land Registration System",
+    title: "Business Development",
     description:
-      "Government cadastre platform for Ambo Town with GIS mapping and multi-role land workflows.",
-    longDescription:
-      "Citizens register land, apply for transfer/inheritance, and report disputes. Land officers review, approve, issue titles, and manage parcels on an interactive map with area calculations.",
-    tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Google Maps", "Leaflet", "Turf.js"],
-    features: [
-      "GIS mapping of parcels/kebeles with area calculation",
-      "Multi-role workflow (Admin/Land Officer/Zone/Region/Citizen)",
-      "Title transfer, inheritance, dispute workflows + PDF certificates",
+      "Opening new markets and partnerships that compound into sustainable revenue.",
+    icon: "growth",
+    items: [
+      "Business Development",
+      "Market Activation",
+      "Partnership Building",
+      "Strategic Planning",
     ],
-    github: "https://github.com/YohanesSenbeto",
-    highlight: "GIS · Government",
-    category: "GIS",
-    featured: true,
   },
   {
-    name: "FBB IP Fetcher",
+    title: "Customer Experience",
     description:
-      "Ethio Telecom enterprise platform for WAN IP analysis, IP pool management, and router configuration.",
-    longDescription:
-      "Secure WAN IP analysis, IP pool management, router configuration generation, and technician enablement. Includes a Telegram bot sidecar for field technicians.",
-    tech: ["Next.js", "TypeScript", "Prisma", "NextAuth", "Telegram Bot", "OpenAI"],
-    features: [
-      "WAN IP analyzer + IP pool/enterprise logic",
-      "Router config generator + technician tutorials",
-      "Telegram bot sidecar for field operations",
+      "Turning service quality and relationships into retention and advocacy.",
+    icon: "customer",
+    items: [
+      "Customer Relationship Management",
+      "Service Excellence",
+      "Retention & Loyalty",
+      "Communication Skills",
     ],
-    live: "https://fbbip.etdevs.et/",
-    telegram: "https://t.me/YohTechSolutions_bot",
-    highlight: "Enterprise · Live",
-    category: "Enterprise",
-    image: "/FBB%20IP%20Fetcher.png",
-    featured: true,
   },
   {
-    name: "nestx CLI",
+    title: "Analytics & Reporting",
     description:
-      "Published npm package — a powerful NestJS project generator with batteries included.",
-    longDescription:
-      "Scaffolds production-ready NestJS apps with Prisma, Swagger, Helmet, CORS, rate-limiting, and Jest pre-configured. MIT-licensed and installable globally via npm.",
-    tech: ["TypeScript", "Commander", "Chalk", "NestJS", "Prisma"],
-    features: [
-      "nestx new scaffolder with security best practices",
-      "Prisma/Swagger/Helmet/rate-limit templates",
-      "Published to npm — npm i -g nestx",
+      "Reading the numbers, spotting the gap, and acting before the quarter turns.",
+    icon: "analytics",
+    items: [
+      "Data Analysis & Reporting",
+      "Sales Forecasting",
+      "Excel, Word & PowerPoint",
+      "Problem Solving",
     ],
-    github: "https://github.com/YohanesSenbeto/nestx-cli-joni",
-    highlight: "npm Package",
-    category: "CLI",
-    featured: true,
-  },
-  {
-    name: "Joni & Astu Wedding Invitation",
-    description:
-      "Personalized wedding invitation site with per-guest links, open tracking, and RSVP admin dashboard.",
-    longDescription:
-      "Per-guest invitation links with open-tracking, RSVP accept/reject with remarks, and an admin dashboard with guest stats and bulk seeding.",
-    tech: ["Next.js", "TypeScript", "MongoDB", "Mongoose", "JWT", "Tailwind"],
-    features: [
-      "Per-guest personalized links + open tracking",
-      "RSVP with accept/reject + remarks",
-      "Admin dashboard + bulk invitee seeding",
-    ],
-    live: "https://joni-astu-wedding-invitation-pro.vercel.app/",
-    highlight: "Creative · Live",
-    category: "Creative",
-    image: "/joni_astu_wedding.png",
-    featured: true,
-  },
-  {
-    name: "Yoh-Tech Solutions — YouTube Channel",
-    description:
-      "Tech content creator channel sharing full-stack tutorials, AI tooling, and enterprise dev walkthroughs.",
-    longDescription:
-      "YouTube channel (Yoh-Tech Solutions) where I create hands-on tutorials on full-stack development, AI integrations, and enterprise tooling — breaking down complex builds into practical, follow-along videos.",
-    tech: ["YouTube", "Content Creation", "Next.js", "AI", "Tutorials"],
-    features: [
-      "Full-stack & AI integration walkthroughs",
-      "Practical, follow-along tutorial format",
-      "Enterprise dev tips & tooling demos",
-    ],
-    live: "https://www.youtube.com/@Yoh-Tech-Solutions",
-    highlight: "Content Creator",
-    category: "Creative",
-    image: "/youtube%20content.png",
-    featured: true,
   },
 ];
 
-export const projects: Project[] = [
-  ...allProjects.filter((p) => p.image),
-  ...allProjects.filter((p) => !p.image),
+export const competencies = [
+  "Sales & Distribution Management",
+  "Team Leadership & Coaching",
+  "Business Development",
+  "M-PESA Operations",
+  "Market Activation",
+  "Customer Relationship Management",
+  "Data Analysis & Reporting",
+  "KPI Monitoring",
+  "Strategic Planning",
+  "Problem Solving",
+  "Communication Skills",
+  "Microsoft Excel, Word & PowerPoint",
 ];
 
 export type Experience = {
@@ -221,91 +137,297 @@ export type Experience = {
   company: string;
   period: string;
   location: string;
+  summary: string;
   points: string[];
+  current?: boolean;
 };
 
 export const experiences: Experience[] = [
   {
-    role: "Software Development Engineer",
-    company: "Ethio Telecom",
-    period: "Jun 2025 – Present",
-    location: "Addis Ababa, Ethiopia",
+    role: "Regional Sales Manager",
+    company: "Safaricom Telecommunications Ethiopia PLC",
+    period: "Apr 2024 – Present",
+    location: "Ambo Region, Oromia",
+    summary: "Leading regional sales operations with full ownership of the commercial agenda.",
     points: [
-      "Developed a preventive maintenance system (React, Next.js, TypeScript, Prisma, PostgreSQL) replacing manual spreadsheets and phone calls.",
-      "Enabled 347 users across 82 teams to create, assign, and track maintenance tasks in a unified dashboard.",
-      "Streamlined workflow automation to improve follow-up speed and reduce missed tasks.",
+      "Lead regional sales operations across the Ambo Region.",
+      "Drive M-PESA, Airtime, SIM, and Digital Financial Services growth.",
+      "Manage Shop Managers, TDRs, TADRs, DSAs, and Business Advisors.",
+      "Analyse sales performance and implement improvement strategies.",
+      "Coordinate market activations and customer acquisition campaigns.",
+      "Build strong relationships with distributors and merchants.",
+    ],
+    current: true,
+  },
+  {
+    role: "Area Sales Manager",
+    company: "Safaricom Telecommunications Ethiopia PLC",
+    period: "Jan 2022 – Apr 2024",
+    location: "Oromia, Ethiopia",
+    summary: "Owned regional sales teams and distribution channels across the area.",
+    points: [
+      "Managed regional sales teams and distribution channels.",
+      "Increased SIM registrations and M-PESA adoption.",
+      "Conducted market analysis and competitor assessments.",
+      "Supervised sales activities and ensured target achievement.",
     ],
   },
   {
-    role: "Fixed Network Performance Analyst",
+    role: "Shop Supervisor",
     company: "Ethio Telecom",
-    period: "Dec 2020 – Jun 2025",
-    location: "Ambo, Ethiopia",
+    period: "Mar 2019 – Jan 2022",
+    location: "Oromia, Ethiopia",
+    summary: "Ran day-to-day shop operations, people, and customer experience.",
     points: [
-      "Monitored and analyzed network performance metrics, enhancing service reliability.",
-      "Collaborated to implement process improvements, reducing downtime by 15%.",
-      "Delivered technical support and training to team members.",
+      "Supervised daily shop operations.",
+      "Led customer service and sales teams.",
+      "Managed cash handling and inventory control.",
+      "Delivered excellent customer experience.",
     ],
   },
   {
-    role: "Assistant Field Operation Technician",
+    role: "Sales Representative",
     company: "Ethio Telecom",
-    period: "Dec 2016 – Dec 2020",
-    location: "Addis Ababa, Ethiopia",
+    period: "Mar 2015 – Mar 2019",
+    location: "Oromia, Ethiopia",
+    summary: "Built the foundations of a sales career on the front line.",
     points: [
-      "Maintained and optimized fixed-line services to minimize downtime.",
-      "Supported technical teams in troubleshooting network issues.",
-      "Contributed to network expansion and enhanced reliability.",
+      "Promoted telecom products and services.",
+      "Achieved monthly sales targets.",
+      "Assisted customers with product selection and technical support.",
     ],
   },
   {
-    role: "Freelance Web Developer",
-    company: "Hulu Cart",
-    period: "Sep 2024 – Nov 2024",
-    location: "Addis Ababa, Ethiopia",
+    role: "Secondary School Teacher",
+    company: "Accounting & Business Education",
+    period: "2010 – 2015",
+    location: "Ethiopia",
+    summary: "Where communication, structure, and mentoring first took shape.",
     points: [
-      "Completed ALX Ventures project with Hulu Cart Rentals, achieving #1 ranking among 50 startups.",
-      "Enhanced WordPress UI and optimized backend for engagement and scalability.",
+      "Delivered Accounting and Business-related subjects.",
+      "Prepared lesson plans and assessed student performance.",
     ],
   },
 ];
 
-export const certifications = [
-  "AI Workshop: Build a Neural Network with PyTorch Lightning",
-  "Advanced Laravel",
-  "Building a Website with Laravel, React.js, and Inertia",
-  "AI for Developers — alx_africa",
-  "Building RESTful Web APIs with Django",
-  "Node.js Essential Training",
-  "Next.js: Creating and Hosting a Full-Stack Site",
-  "Cisco CCST Networking: Network Fundamentals",
-  "Android Developer Fundamentals — Udacity",
-  "Full Stack Web Development — ALX South Africa",
+export type GalleryItem = {
+  src: string;
+  title: string;
+  category: string;
+  description: string;
+  tall?: boolean;
+};
+
+export const gallery: GalleryItem[] = [
+  {
+    src: "/images/negesu/safaricom-foundation-books.jpg",
+    title: "Safaricom Foundation — Book Distribution",
+    category: "Community & Education",
+    description:
+      "Handing over revision books to students alongside the regional team and the Safaricom Ethiopia Foundation.",
+  },
+  {
+    src: "/images/negesu/mpesa-field-activation.jpg",
+    title: "M-PESA Field Activation",
+    category: "Market Activation",
+    description:
+      "On-the-ground customer onboarding and product hand-over under the M-PESA activation tent.",
+    tall: true,
+  },
+  {
+    src: "/images/negesu/mpesa-stage-event.jpg",
+    title: "M-PESA Community Activation",
+    category: "Market Activation",
+    description:
+      "Leading a live community engagement on the M-PESA activation stage.",
+  },
+  {
+    src: "/images/negesu/mpesa-prize-giveaway.jpg",
+    title: "M-PESA Customer Reward — 100,000 ETB",
+    category: "Recognition",
+    description:
+      "Awarding the Qaruukee Haa Taanu grand prize to a customer — building trust and excitement around M-PESA.",
+    tall: true,
+  },
+  {
+    src: "/images/negesu/mpesa-shop-launch.jpg",
+    title: "M-PESA Shop Activation",
+    category: "Retail & Distribution",
+    description:
+      "Speaking at a merchant shop activation, energising the crowd and the sales team.",
+  },
+  {
+    src: "/images/negesu/safaricom-shop-anniversary.jpg",
+    title: "Safaricom Shop Milestone",
+    category: "Team & Retail",
+    description:
+      "Celebrating a shop milestone with the regional team and a traditional ceremony.",
+    tall: true,
+  },
+  {
+    src: "/images/negesu/team-training-1.jpg",
+    title: "Field Team Training",
+    category: "Team Leadership",
+    description:
+      "Leading a training session for the M-PESA field team — aligning agents and DSAs on targets and best practice.",
+  },
+  {
+    src: "/images/negesu/team-training-2.jpg",
+    title: "Team Coaching Session",
+    category: "Team Leadership",
+    description:
+      "Coaching agents and distributors in the field, turning strategy into daily execution.",
+  },
 ];
 
-export const education = [
+export type EducationItem = {
+  institution: string;
+  degree: string;
+  detail?: string;
+};
+
+export const education: EducationItem[] = [
   {
-    institution: "Rift Valley University",
-    degree: "Bachelor's Degree, Computer Science",
-    period: "Feb 2019 – Jul 2024",
-    detail: "Grade 3.63 · Medal Award for Academic Excellence",
+    institution: "Leadstar College",
+    degree: "Master of Business Administration (MBA)",
   },
   {
-    institution: "African Leadership Experience (ALX)",
-    degree: "Certificate, Software Engineering",
-    period: "May 2023 – Jun 2024",
-    detail: "12-month comprehensive full-stack development program",
+    institution: "Bachelor of Arts",
+    degree: "Accounting and Finance",
   },
   {
-    institution: "SESE",
-    degree: "Certificate, SE Full Stack Development (Backend)",
-    period: "—",
-    detail: "Specialized in backend engineering",
+    institution: "Bachelor of Education (B.Ed.)",
+    degree: "Education",
   },
 ];
 
-export const achievements = [
-  "#1 ranking among 50 startups — ALX Ventures / Hulu Cart",
-  "Medal Award for Academic Excellence — Rift Valley University",
-  "Participant — Innovating with Google Cloud Hackathon (Google Cloud + ALX Ethiopia)",
+export const languages = [
+  { name: "Afaan Oromo", level: "Native" },
+  { name: "Amharic", level: "Fluent" },
+  { name: "English", level: "Fluent" },
+];
+
+export const highlights = [
+  "10+ years across telecommunications sales, distribution, and leadership",
+  "Proven M-PESA and digital financial services growth",
+  "Leads multi-level teams — Shop Managers, TDRs, TADRs, DSAs, and Advisors",
+  "Consistent record of hitting and exceeding regional targets",
+];
+
+/* ── Dizme-style section content ───────────────────────────── */
+
+export const featureStrip = [
+  {
+    title: "Target Driven",
+    text: "A decade of consistently hitting and beating regional sales targets across telecom and M-PESA.",
+    icon: "target" as const,
+  },
+  {
+    title: "People First",
+    text: "Builds, coaches, and leads high-performing teams — from DSAs to Shop Managers.",
+    icon: "users" as const,
+  },
+  {
+    title: "Digital Finance",
+    text: "Drives M-PESA adoption and digital financial services deep into the field.",
+    icon: "wallet" as const,
+  },
+];
+
+export type Service = {
+  title: string;
+  tag: string;
+  description: string;
+  icon: "distribution" | "activation" | "leadership" | "mpesa";
+  accent: "brand" | "purple" | "green";
+};
+
+export const services: Service[] = [
+  {
+    title: "Sales & Distribution",
+    tag: "Regional growth",
+    description:
+      "Designing territory and channel strategy that moves product and hits number across the region.",
+    icon: "distribution",
+    accent: "brand",
+  },
+  {
+    title: "Market Activation",
+    tag: "On the ground",
+    description:
+      "Planning and running activations and acquisition campaigns that convert customers on the spot.",
+    icon: "activation",
+    accent: "purple",
+  },
+  {
+    title: "Team Leadership",
+    tag: "Coaching",
+    description:
+      "Coaching multi-level sales teams on targets, discipline, and daily execution with clear KPIs.",
+    icon: "leadership",
+    accent: "green",
+  },
+  {
+    title: "M-PESA & DFS Growth",
+    tag: "Digital finance",
+    description:
+      "Growing agent and merchant networks while driving M-PESA adoption and customer onboarding.",
+    icon: "mpesa",
+    accent: "brand",
+  },
+];
+
+export const skillBars = [
+  { label: "Sales & Distribution", value: 95 },
+  { label: "Team Leadership", value: 92 },
+  { label: "M-PESA Operations", value: 90 },
+  { label: "Business Development", value: 88 },
+  { label: "Data & Reporting", value: 85 },
+];
+
+export const approach = {
+  quote:
+    "Great sales results are not luck. They come from clarity of targets, coaching the people closest to the customer, and relentless follow-through — every single week.",
+  name: "Negesu Tolessa",
+  role: "Regional Sales Manager, Safaricom Ethiopia",
+};
+
+export const organizations = [
+  "Safaricom Ethiopia",
+  "Ethio Telecom",
+  "M-PESA",
+  "Safaricom Foundation",
+  "Digital Financial Services",
+  "Ambo Region",
+];
+
+export type Story = {
+  image: string;
+  tag: string;
+  title: string;
+  excerpt: string;
+};
+
+export const stories: Story[] = [
+  {
+    image: "/images/negesu/mpesa-field-activation.jpg",
+    tag: "M-PESA",
+    title: "Activations that convert right on the spot",
+    excerpt:
+      "How on-the-ground customer onboarding under the M-PESA tent turns interest into active users.",
+  },
+  {
+    image: "/images/negesu/team-training-1.jpg",
+    tag: "Leadership",
+    title: "Turning field agents into a motivated sales force",
+    excerpt:
+      "Training and coaching agents and DSAs on targets, best practice, and daily execution.",
+  },
+  {
+    image: "/images/negesu/safaricom-foundation-books.jpg",
+    tag: "Community",
+    title: "Giving back: books for the next generation",
+    excerpt:
+      "Supporting the Safaricom Ethiopia Foundation to hand revision books to local students.",
+  },
 ];

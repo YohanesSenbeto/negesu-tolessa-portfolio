@@ -1,20 +1,24 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins, Inter } from "next/font/google";
 import Analytics from "@/components/Analytics";
-import { profile } from "@/lib/data";
+import { profile, languages } from "@/lib/data";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
 });
 
-const siteUrl = profile.portfolio;
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://negesutolessa.vercel.app";
 const siteTitle = `${profile.name} — ${profile.title}`;
 const ogImage = new URL(profile.photo, siteUrl).toString();
 
@@ -26,23 +30,26 @@ export const metadata: Metadata = {
   },
   description: profile.summary,
   keywords: [
-    "Yohanes Senbeto",
-    "Full-Stack Developer",
-    "Software Engineer",
-    "Next.js",
-    "TypeScript",
-    "React",
-    "Prisma",
-    "PostgreSQL",
-    "AI",
+    "Negesu Tolessa",
+    "Negesu Tolessa Likasa",
+    "Regional Sales Manager",
+    "Sales and Marketing",
+    "Telecom Sales",
+    "M-PESA",
+    "Digital Financial Services",
+    "Distribution Management",
+    "Safaricom Ethiopia",
     "Ethio Telecom",
-    "Portfolio",
+    "Sales Leadership",
+    "Ambo",
+    "Oromia",
+    "Ethiopia",
   ],
   authors: [{ name: profile.name, url: siteUrl }],
   creator: profile.name,
   alternates: { canonical: "/" },
   openGraph: {
-    type: "website",
+    type: "profile",
     url: siteUrl,
     siteName: profile.name,
     locale: "en_US",
@@ -51,8 +58,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: ogImage,
-        width: 800,
-        height: 800,
+        width: 400,
+        height: 400,
         alt: `${profile.name} — ${profile.title}`,
       },
     ],
@@ -78,33 +85,31 @@ const jsonLd = {
   url: siteUrl,
   image: ogImage,
   email: `mailto:${profile.email}`,
+  telephone: profile.phones,
   address: {
     "@type": "PostalAddress",
-    addressLocality: profile.location,
+    addressLocality: "Ambo",
+    addressRegion: "Oromia",
     addressCountry: "ET",
   },
   worksFor: {
     "@type": "Organization",
     name: profile.company,
   },
-  sameAs: [profile.linkedin, profile.github, profile.youtube],
+  knowsLanguage: languages.map((l) => l.name),
+  sameAs: [profile.linkedin],
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      className={`${inter.variable} ${poppins.variable} antialiased`}
       suppressHydrationWarning
     >
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `try{var t=localStorage.getItem('theme');if(t==='light')document.documentElement.classList.add('light')}catch(e){}`,
-          }}
-        />
-      </head>
-      <body className="min-h-screen flex flex-col noise">
+      <body className="grain min-h-screen flex flex-col bg-bg text-ink">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

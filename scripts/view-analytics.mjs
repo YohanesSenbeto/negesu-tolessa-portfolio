@@ -12,7 +12,7 @@ for (const line of readFileSync(envPath, "utf8").split("\n")) {
 }
 
 const uri = process.env.MONGODB_URI;
-const dbName = process.env.MONGODB_DB || "portfolio";
+const dbName = process.env.MONGODB_DB || "negesu_portfolio";
 
 const client = new MongoClient(uri);
 const db = client.db(dbName);

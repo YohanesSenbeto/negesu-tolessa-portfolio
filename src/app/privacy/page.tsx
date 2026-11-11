@@ -1,99 +1,96 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { profile } from "@/lib/data";
 
-export const metadata = {
-  title: "Privacy Terms",
-  description:
-    "Privacy terms for cookies and analytics on this portfolio site.",
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: `Privacy policy for ${profile.name}'s personal website.`,
 };
 
 export default function PrivacyPage() {
   return (
-    <section className="relative py-24 px-5">
-      <div className="max-w-2xl mx-auto">
-        <h1 className="text-3xl md:text-4xl font-bold mb-2">Privacy Terms</h1>
-        <p className="text-sm font-mono text-[#7c5cff] mb-8">
-          Last updated: August 2026
+    <main className="min-h-screen bg-bg">
+      <div className="container-x py-16 md:py-24 max-w-3xl">
+        <Link
+          href="/"
+          className="text-sm font-medium text-brand hover:text-brand-2 transition-colors"
+        >
+          ← Back to home
+        </Link>
+
+        <h1 className="font-display text-4xl md:text-5xl font-extrabold mt-6 tracking-tight">
+          Privacy Policy
+        </h1>
+        <p className="text-sm text-muted mt-2">
+          Last updated: {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long" })}
         </p>
 
-        <div className="space-y-6 text-secondary leading-relaxed">
-          <div>
-            <h2 className="text-xl font-bold text-primary mb-2">Overview</h2>
+        <div className="mt-10 space-y-8 text-muted leading-relaxed">
+          <section>
+            <h2 className="font-display text-xl font-bold text-ink mb-2">Overview</h2>
             <p>
-              This portfolio site uses cookies and analytics to understand
-              visits and improve content. Analytics runs only after you accept
-              the consent banner.
+              This website is the personal portfolio of {profile.name}. This policy explains what
+              information is collected when you visit, and how it is used. It is intentionally
+              simple: I collect only what is needed to understand visits and to respond to your
+              messages.
             </p>
-          </div>
+          </section>
 
-          <div>
-            <h2 className="text-xl font-bold text-primary mb-2">
-              What we collect
-            </h2>
-            <ul className="list-disc pl-5 space-y-1">
-              <li>Pages viewed and clicks (element tag, id, text, link).</li>
-              <li>
-                Device info: browser/user agent, language, screen &amp; viewport
-                size, timezone.
-              </li>
-              <li>
-                Approximate region (country, region, city) derived from your IP
-                address.
-              </li>
-              <li>
-                The visiting network/organization (e.g., company or ISP) and its
-                domain, inferred from your IP address.
-              </li>
-              <li>
-                A hashed version of your IP address — the raw IP is never stored.
-              </li>
-              <li>Referrer and timestamps.</li>
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="text-xl font-bold text-primary mb-2">
-              What we do not do
-            </h2>
-            <ul className="list-disc pl-5 space-y-1">
-              <li>No cross-site or third-party tracking.</li>
-              <li>No sale or sharing of personal data.</li>
-              <li>If you decline, no analytics data is collected.</li>
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="text-xl font-bold text-primary mb-2">
-              Storage &amp; retention
+          <section>
+            <h2 className="font-display text-xl font-bold text-ink mb-2">
+              Information you provide
             </h2>
             <p>
-              Data is stored in MongoDB Atlas. You can withdraw consent at any
-              time by clearing site data in your browser.
+              If you use the contact form, the name, email address, and message you submit are
+              stored securely so I can reply to you. They are used only to respond to your enquiry
+              and are never sold or shared for marketing.
             </p>
-          </div>
+          </section>
 
-          <div>
-            <h2 className="text-xl font-bold text-primary mb-2">Contact</h2>
+          <section>
+            <h2 className="font-display text-xl font-bold text-ink mb-2">
+              Analytics &amp; cookies
+            </h2>
             <p>
-              Questions? Email{" "}
+              With your consent, the site records anonymous, aggregate usage data — such as the
+              pages viewed and general device information — to improve the experience. Your IP
+              address is hashed (one-way) before storage, so it cannot be read back. You can
+              decline analytics cookies at any time, and no cross-site tracking is performed.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-display text-xl font-bold text-ink mb-2">Data retention</h2>
+            <p>
+              Contact messages are retained only as long as needed to handle your enquiry.
+              Analytics records are retained in aggregate for service improvement.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-display text-xl font-bold text-ink mb-2">Your rights</h2>
+            <p>
+              You may request access to, or deletion of, any personal information you have shared.
+              To do so, contact{" "}
               <a
                 href={`mailto:${profile.email}`}
-                className="text-[#7c5cff] hover:underline"
+                className="text-brand underline underline-offset-2 hover:text-brand-2"
               >
                 {profile.email}
               </a>
               .
             </p>
-          </div>
-        </div>
+          </section>
 
-        <Link
-          href="/#home"
-          className="inline-block mt-10 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#7c5cff] to-[#00e5ff] text-black font-semibold hover:scale-105 transition-transform"
-        >
-          Back to home
-        </Link>
+          <section>
+            <h2 className="font-display text-xl font-bold text-ink mb-2">Contact</h2>
+            <p>
+              Questions about this policy can be sent to {profile.email} or by phone at{" "}
+              {profile.phones.join(" or ")}.
+            </p>
+          </section>
+        </div>
       </div>
-    </section>
+    </main>
   );
 }

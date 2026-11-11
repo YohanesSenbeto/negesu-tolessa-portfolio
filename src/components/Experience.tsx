@@ -1,170 +1,114 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Briefcase, GraduationCap, Award, BadgeCheck } from "lucide-react";
-import { experiences, education, certifications, achievements } from "@/lib/data";
+import { motion, type Variants } from "framer-motion";
+import { Briefcase, GraduationCap, MapPin } from "lucide-react";
+import { experiences, education } from "@/lib/data";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0 },
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 26 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
 };
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative py-24 px-5">
-      <div className="max-w-6xl mx-auto">
+    <section id="career" className="relative py-20 md:py-28 bg-bg-2 border-y border-line">
+      <div className="container-x">
         <motion.div
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true, margin: "-80px" }}
           variants={fadeUp}
-          className="mb-12"
+          className="max-w-2xl"
         >
-          <h2 className="text-sm font-mono text-[#7c5cff] mb-2">04 / EXPERIENCE</h2>
-          <h3 className="text-3xl md:text-4xl font-bold">Where I&apos;ve Worked</h3>
+          <p className="eyebrow">Career</p>
+          <h2 className="font-display text-3xl md:text-[2.8rem] font-extrabold leading-[1.08] tracking-tight mt-4">
+            My Professional <span className="text-brand">Journey</span>
+          </h2>
+          <p className="mt-5 text-base md:text-lg text-muted leading-relaxed">
+            A clear upward path — from the shop floor to leading an entire region&apos;s sales
+            operations. Every step built on the one before it.
+          </p>
         </motion.div>
 
-        {/* Roadmap timeline — sinusoidal road with zigzag entries */}
-        <div className="relative">
-          {/* Gradient definition */}
-          <svg className="absolute h-0 w-0" aria-hidden="true">
-            <defs>
-              <linearGradient id="roadGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#7c5cff" stopOpacity="0.6" />
-                <stop offset="60%" stopColor="#00e5ff" />
-                <stop offset="100%" stopColor="#00e5ff" stopOpacity="0.3" />
-              </linearGradient>
-            </defs>
-          </svg>
-
-          {/* Sinusoidal road */}
-          <svg
-            className="absolute top-0 h-full w-8 md:w-12 left-5 md:left-1/2 -translate-x-1/2 pointer-events-none"
-            viewBox="0 0 60 400"
-            preserveAspectRatio="none"
-            fill="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M 30 0 Q 16 25 30 50 Q 48 75 30 100 Q 8 125 30 150 Q 56 175 30 200 Q 0 225 30 250 Q 64 275 30 300 Q -8 325 30 350 Q 72 375 30 400"
-              stroke="url(#roadGrad)"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-
+        <div className="relative mt-12">
+          <span className="absolute left-[9px] top-2 bottom-2 w-px bg-gradient-to-b from-brand via-purple/60 to-transparent" />
           {experiences.map((exp, i) => (
             <motion.div
               key={exp.role + exp.period}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: i * 0.04 }}
               variants={fadeUp}
-              className={`relative pl-12 md:pl-0 mb-8 last:mb-0 md:grid md:grid-cols-2 md:gap-10 ${
-                i % 2 === 0 ? "" : "md:[direction:rtl]"
-              }`}
+              className="relative pl-9 pb-6 last:pb-0"
             >
-              {/* Milestone node */}
-              <div className="absolute left-5 md:left-1/2 top-6 -translate-x-1/2 z-10">
-                <div className="w-4 h-4 rounded-full bg-gradient-to-br from-[#7c5cff] to-[#00e5ff] ring-4 ring-[#7c5cff]/15 shadow-lg shadow-[#7c5cff]/30" />
-              </div>
+              <span className="absolute left-0 top-2 grid h-[19px] w-[19px] place-items-center rounded-full border border-brand/50 bg-bg-2">
+                <span className={`h-2.5 w-2.5 rounded-full ${exp.current ? "bg-brand" : "bg-purple"}`} />
+              </span>
 
-              <div
-                className={`md:[direction:ltr] ${
-                  i % 2 === 0 ? "md:pr-10" : "md:col-start-2 md:pl-10"
-                }`}
-              >
-                <div className="rounded-2xl border border-subtle bg-surface p-5 hover:border-default hover:-translate-y-0.5 transition-all duration-300">
-                  <div className="flex items-center gap-2 mb-1">
-                    <Briefcase className="h-4 w-4 text-[#00e5ff]" />
-                    <span className="text-sm text-muted">{exp.period}</span>
-                  </div>
-                  <h4 className="font-bold text-lg">{exp.role}</h4>
-                  <p className="text-[#7c5cff] text-sm mb-1">
-                    {exp.company} · {exp.location}
-                  </p>
-                  <ul className="space-y-1 mt-2">
-                    {exp.points.map((pt) => (
-                      <li
-                        key={pt}
-                        className="text-sm text-secondary leading-relaxed flex items-start gap-1.5"
-                      >
-                        <span className="text-[#7c5cff] mt-1">▸</span>
-                        {pt}
-                      </li>
-                    ))}
-                  </ul>
+              <div className="card p-6 md:p-7 transition-all duration-300 hover:border-brand/40 hover:shadow-[0_24px_50px_-32px_rgba(255,75,62,0.35)]">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                  <span className="tag font-medium">{exp.period}</span>
+                  {exp.current && (
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-brand/10 px-2.5 py-1 text-xs font-semibold text-brand">
+                      <span className="h-1.5 w-1.5 rounded-full bg-brand" /> Current
+                    </span>
+                  )}
+                  <span className="inline-flex items-center gap-1.5 text-xs text-muted">
+                    <MapPin className="h-3.5 w-3.5" /> {exp.location}
+                  </span>
                 </div>
+
+                <div className="mt-3 flex items-start gap-3">
+                  <span className="mt-1 hidden sm:grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-brand/10 text-brand">
+                    <Briefcase className="h-4 w-4" />
+                  </span>
+                  <div>
+                    <h3 className="font-display text-xl md:text-2xl font-bold leading-tight">{exp.role}</h3>
+                    <p className="text-brand font-medium text-sm mt-0.5">{exp.company}</p>
+                  </div>
+                </div>
+
+                <p className="mt-3 text-sm text-muted leading-relaxed">{exp.summary}</p>
+
+                <ul className="mt-4 grid sm:grid-cols-2 gap-x-6 gap-y-2">
+                  {exp.points.map((pt) => (
+                    <li key={pt} className="flex items-start gap-2 text-sm text-muted leading-relaxed">
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-purple" />
+                      {pt}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Education + Achievements */}
-        <div className="grid md:grid-cols-2 gap-6 mt-16">
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            variants={fadeUp}
-            className="rounded-2xl border border-subtle bg-surface p-6"
-          >
-            <h4 className="flex items-center gap-2 font-bold mb-4">
-              <GraduationCap className="h-5 w-5 text-[#00e5ff]" /> Education
-            </h4>
-            <div className="space-y-4">
-              {education.map((e) => (
-                <div key={e.institution} className="border-l-2 border-subtle pl-3">
-                  <p className="font-medium text-sm">{e.institution}</p>
-                  <p className="text-sm text-secondary">{e.degree}</p>
-                  <p className="text-xs text-muted mt-0.5">
-                    {e.period} · {e.detail}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            variants={fadeUp}
-            className="rounded-2xl border border-subtle bg-surface p-6"
-          >
-            <h4 className="flex items-center gap-2 font-bold mb-4">
-              <Award className="h-5 w-5 text-[#00e5ff]" /> Achievements
-            </h4>
-            <ul className="space-y-2 mb-5">
-              {achievements.map((a) => (
-                <li
-                  key={a}
-                  className="text-sm text-secondary flex items-start gap-2"
-                >
-                  <span className="text-[#7c5cff]">★</span> {a}
-                </li>
-              ))}
-            </ul>
-            <h5 className="flex items-center gap-2 font-semibold text-sm mb-3 text-secondary">
-              <BadgeCheck className="h-4 w-4 text-[#7c5cff]" /> Certifications
-            </h5>
-            <div className="flex flex-wrap gap-1.5">
-              {certifications.map((c) => (
-                <span
-                  key={c}
-                  className="px-2 py-1 rounded text-xs bg-surface border border-subtle text-muted"
-                >
-                  {c}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-        </div>
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={fadeUp}
+          className="mt-14"
+        >
+          <div className="flex items-center gap-3">
+            <span className="grid h-10 w-10 place-items-center rounded-xl bg-purple/15 text-purple">
+              <GraduationCap className="h-5 w-5" />
+            </span>
+            <h3 className="font-display text-2xl font-bold">Education</h3>
+          </div>
+          <div className="mt-6 grid sm:grid-cols-3 gap-5">
+            {education.map((e) => (
+              <div key={e.institution + e.degree} className="card p-6">
+                <p className="text-xs uppercase tracking-[0.14em] text-brand font-semibold">
+                  {e.institution}
+                </p>
+                <p className="mt-2 font-medium text-ink leading-snug">{e.degree}</p>
+                {e.detail && <p className="mt-1 text-sm text-muted">{e.detail}</p>}
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

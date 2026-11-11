@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useSyncExternalStore } from "react";
 
-const CONSENT_KEY = "ys_consent";
+const CONSENT_KEY = "nt_consent";
 
 type Consent = "accepted" | "declined";
 
@@ -90,24 +90,21 @@ export default function Analytics() {
   if (!isClient || consent !== null) return null;
 
   return (
-    <div className="fixed bottom-4 inset-x-4 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:max-w-xl z-[60] rounded-2xl border border-default bg-surface backdrop-blur-xl p-4 shadow-2xl">
-      <p className="text-sm text-secondary mb-3 leading-relaxed">
-        We use cookies to improve this site. See our{" "}
-        <a href="/privacy" className="text-[#7c5cff] hover:underline">
-          Privacy Terms
+    <div className="fixed bottom-4 inset-x-4 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:max-w-xl z-[70] rounded-2xl border border-line bg-surface/95 backdrop-blur-xl p-4 shadow-2xl">
+      <p className="text-sm text-muted mb-3 leading-relaxed">
+        This site uses a few cookies to understand visits and improve the experience. See the{" "}
+        <a href="/privacy" className="text-brand underline underline-offset-2 hover:text-brand-2">
+          Privacy Policy
         </a>
         . No cross-site tracking.
       </p>
       <div className="flex items-center gap-2">
-        <button
-          onClick={() => decide("accepted")}
-          className="px-4 py-2 rounded-full text-sm font-semibold text-black bg-gradient-to-r from-[#7c5cff] to-[#00e5ff] hover:scale-105 transition-transform"
-        >
+        <button onClick={() => decide("accepted")} className="btn-primary px-4 py-2 text-sm">
           Accept
         </button>
         <button
           onClick={() => decide("declined")}
-          className="px-4 py-2 rounded-full text-sm border border-default text-secondary hover:bg-surface-2 transition-colors"
+          className="rounded-full border border-line px-4 py-2 text-sm font-medium text-muted transition-colors hover:bg-surface-2 hover:text-ink"
         >
           Decline
         </button>

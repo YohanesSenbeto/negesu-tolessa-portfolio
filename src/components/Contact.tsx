@@ -1,14 +1,14 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { motion } from "framer-motion";
-import { Mail, MapPin, Send, CheckCircle } from "lucide-react";
-import { GithubIcon, LinkedinIcon, YoutubeIcon } from "@/components/BrandIcons";
+import { motion, type Variants } from "framer-motion";
+import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { LinkedinIcon, WhatsappIcon } from "@/components/BrandIcons";
 import { profile } from "@/lib/data";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0 },
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 26 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
 };
 
 type Status = "idle" | "sending" | "success" | "error";
@@ -45,141 +45,167 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="relative py-24 px-5">
-      <div className="max-w-3xl mx-auto text-center">
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          variants={fadeUp}
-        >
-          <h2 className="text-sm font-mono text-[#7c5cff] mb-2">05 / CONTACT</h2>
-          <h3 className="text-3xl md:text-5xl font-bold mb-4">
-            Let&apos;s build something{" "}
-            <span className="gradient-text">great</span>
-          </h3>
-          <p className="text-secondary mb-10 max-w-lg mx-auto">
-            I&apos;m open to full-stack roles, freelance projects, and
-            collaborations. Reach out and I&apos;ll respond within 24 hours.
+    <section id="contact" className="relative py-20 md:py-28 bg-bg-2 border-t border-line">
+      <div className="container-x">
+        <div className="text-center max-w-2xl mx-auto">
+          <p className="eyebrow justify-center">Contact</p>
+          <h2 className="font-display text-3xl md:text-[2.8rem] font-extrabold leading-[1.08] tracking-tight mt-4">
+            I Want to <span className="text-brand">Hear From You</span>
+          </h2>
+          <p className="mt-4 text-base md:text-lg text-muted leading-relaxed">
+            Open to senior sales and commercial leadership roles, regional growth mandates, and
+            M-PESA / digital financial services initiatives.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          variants={fadeUp}
-          className="grid sm:grid-cols-2 gap-4 mb-10"
-        >
-          <a
-            href={`mailto:${profile.email}`}
-            className="flex items-center gap-3 rounded-2xl border border-subtle bg-surface p-5 hover:border-[#7c5cff]/40 transition-colors text-left"
+        <div className="mt-12 grid lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-12 items-start">
+          {/* Contact methods */}
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={fadeUp}
+            className="space-y-3"
           >
-            <Mail className="h-5 w-5 text-[#7c5cff] shrink-0" />
-            <div>
-              <p className="text-xs text-muted">Email</p>
-              <p className="text-sm truncate">{profile.email}</p>
+            <div className="card flex items-center gap-4 p-5">
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-brand/12 text-brand">
+                <MapPin className="h-5 w-5" />
+              </span>
+              <div>
+                <p className="text-xs uppercase tracking-[0.14em] text-muted">Address</p>
+                <p className="text-sm font-medium text-ink">{profile.location}</p>
+              </div>
             </div>
-          </a>
-          <div className="flex items-center gap-3 rounded-2xl border border-subtle bg-surface p-5 text-left">
-            <MapPin className="h-5 w-5 text-[#00e5ff] shrink-0" />
-            <div>
-              <p className="text-xs text-muted">Location</p>
-              <p className="text-sm">{profile.location}</p>
-            </div>
-          </div>
-        </motion.div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          variants={fadeUp}
-        >
-          <form
+            <a href={`mailto:${profile.email}`} className="card flex items-center gap-4 p-5 transition-colors hover:border-brand/40">
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-purple/15 text-purple">
+                <Mail className="h-5 w-5" />
+              </span>
+              <div className="min-w-0">
+                <p className="text-xs uppercase tracking-[0.14em] text-muted">Email</p>
+                <p className="text-sm font-medium text-ink truncate">{profile.email}</p>
+              </div>
+            </a>
+
+            <div className="card flex items-center gap-4 p-5">
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-green/15 text-green">
+                <Phone className="h-5 w-5" />
+              </span>
+              <div>
+                <p className="text-xs uppercase tracking-[0.14em] text-muted">Phone</p>
+                <div className="flex flex-wrap gap-x-3">
+                  {profile.phones.map((p, i) => (
+                    <a key={p} href={`tel:${profile.phoneLinks[i]}`} className="text-sm font-medium text-ink hover:text-brand">
+                      {p}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <a
+                href={`https://wa.me/${profile.whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card flex items-center gap-3 p-4 transition-colors hover:border-green/50"
+              >
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-green/15 text-green">
+                  <WhatsappIcon className="h-4 w-4" />
+                </span>
+                <span className="text-sm font-medium text-ink">WhatsApp</span>
+              </a>
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card flex items-center gap-3 p-4 transition-colors hover:border-purple/50"
+              >
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-purple/15 text-purple">
+                  <LinkedinIcon className="h-4 w-4" />
+                </span>
+                <span className="text-sm font-medium text-ink">LinkedIn</span>
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Form */}
+          <motion.form
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.55, delay: 0.1 }}
+            variants={fadeUp}
             onSubmit={handleSubmit}
-            className="max-w-lg mx-auto text-left space-y-3"
+            className="card p-6 md:p-8 space-y-4"
           >
-            <div className="grid sm:grid-cols-2 gap-3">
-              <input
-                name="name"
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label htmlFor="name" className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">
+                  Your Name
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  required
+                  maxLength={100}
+                  placeholder="Full name"
+                  className="mt-2 w-full rounded-xl border border-line bg-bg px-4 py-3 text-sm text-ink outline-none transition-colors placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/20"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">
+                  Your Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  maxLength={200}
+                  placeholder="you@company.com"
+                  className="mt-2 w-full rounded-xl border border-line bg-bg px-4 py-3 text-sm text-ink outline-none transition-colors placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/20"
+                />
+              </div>
+            </div>
+            <div>
+              <label htmlFor="message" className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">
+                Your Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
                 required
-                maxLength={100}
-                aria-label="Your name"
-                placeholder="Your name"
-                className="w-full rounded-xl border border-subtle bg-surface px-4 py-3 text-sm text-primary outline-none focus:border-[#7c5cff]/60 transition-colors"
-              />
-              <input
-                name="email"
-                type="email"
-                required
-                maxLength={200}
-                aria-label="Your email"
-                placeholder="Your email"
-                className="w-full rounded-xl border border-subtle bg-surface px-4 py-3 text-sm text-primary outline-none focus:border-[#7c5cff]/60 transition-colors"
+                rows={5}
+                maxLength={5000}
+                placeholder="What would you like to discuss?"
+                className="mt-2 w-full resize-none rounded-xl border border-line bg-bg px-4 py-3 text-sm text-ink outline-none transition-colors placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/20"
               />
             </div>
-            <textarea
-              name="message"
-              required
-              rows={4}
-              maxLength={5000}
-              aria-label="Your message"
-              placeholder="Your message"
-              className="w-full rounded-xl border border-subtle bg-surface px-4 py-3 text-sm text-primary outline-none focus:border-[#7c5cff]/60 transition-colors resize-none"
-            />
+
             <button
               type="submit"
               disabled={status === "sending"}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#7c5cff] to-[#00e5ff] text-black font-semibold hover:scale-105 transition-transform glow disabled:opacity-60 disabled:hover:scale-100"
+              className="btn-primary w-full disabled:opacity-60 disabled:hover:translate-y-0"
             >
               <Send className="h-4 w-4" />
-              {status === "sending" ? "Sending..." : "Send Message"}
+              {status === "sending" ? "Sending..." : "Submit Now"}
             </button>
+
             {status === "success" && (
-              <p className="flex items-center gap-2 text-sm text-[#00e5ff]">
-                <CheckCircle className="h-4 w-4" /> Thanks! I&apos;ll get back to
-                you within 24 hours.
+              <p className="flex items-center gap-2 text-sm text-green">
+                <CheckCircle2 className="h-4 w-4" /> Thank you — your message has been received.
+                I&apos;ll get back to you shortly.
               </p>
             )}
             {status === "error" && (
-              <p className="text-sm text-red-400">
-                {error ||
-                  "Something went wrong. Please email me directly."}
+              <p className="flex items-center gap-2 text-sm text-brand">
+                <AlertCircle className="h-4 w-4" />
+                {error || "Something went wrong. Please email me directly."}
               </p>
             )}
-          </form>
-
-          <div className="flex items-center justify-center gap-3 mt-6">
-            <a
-              href={profile.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full border border-default hover:bg-surface-2 transition-all"
-            >
-              <GithubIcon className="h-5 w-5" />
-            </a>
-            <a
-              href={profile.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full border border-default hover:bg-surface-2 transition-all"
-            >
-              <LinkedinIcon className="h-5 w-5" />
-            </a>
-            <a
-              href={profile.youtube}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full border border-default hover:bg-surface-2 transition-all"
-            >
-              <YoutubeIcon className="h-5 w-5" />
-            </a>
-          </div>
-        </motion.div>
+          </motion.form>
+        </div>
       </div>
     </section>
   );

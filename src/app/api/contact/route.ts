@@ -1,87 +1,99 @@
-import { NextRequest, NextResponse } from "next/server";
-import crypto from "node:crypto";
+import { createHash } from "node:crypto";
 import { getCollection } from "@/lib/mongodb";
-import { profile } from "@/lib/data";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-export async function POST(req: NextRequest) {
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function hashIp(ip: string) {
+  const salt = process.env.IP_HASH_SALT || "negesu-portfolio";
+  return createHash("sha256").update(ip + salt).digest("hex").slice(0, 32);
+}
+
+function clientIp(req: Request) {
+  const fwd = req.headers.get("x-forwarded-for");
+  if (fwd) return fwd.split(",")[0].trim();
+  return req.headers.get("x-real-ip") || "unknown";
+}
+
+async function sendEmailNotification(payload: {
+  name: string;
+  email: string;
+  message: string;
+}) {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) return;
+  const from = process.env.CONTACT_FROM || "Negesu Portfolio <onboarding@resend.dev>";
+  const to = process.env.CONTACT_TO || "nagasu.tolessa@gmail.com";
   try {
-    const body = (await req.json().catch(() => ({}))) as {
-      name?: string;
-      email?: string;
-      message?: string;
-    };
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from,
+        to: [to],
+        reply_to: payload.email,
+        subject: `New portfolio message from ${payload.name}`,
+        html: `<h2>New message from your portfolio</h2>
+               <p><strong>Name:</strong> ${payload.name}</p>
+               <p><strong>Email:</strong> ${payload.email}</p>
+               <p><strong>Message:</strong></p>
+               <p>${payload.message.replace(/\n/g, "<br/>")}</p>`,
+      }),
+    });
+  } catch {
+    // Email is best-effort; the message is already stored in MongoDB.
+  }
+}
 
-    const name = (body.name || "").trim().slice(0, 100);
-    const email = (body.email || "").trim().slice(0, 200);
-    const message = (body.message || "").trim().slice(0, 5000);
-
-    if (!name || !email || !message) {
-      return NextResponse.json(
-        { ok: false, error: "All fields are required." },
-        { status: 400 },
-      );
+export async function POST(req: Request) {
+  try {
+    const body = await req.json().catch(() => null);
+    if (!body || typeof body !== "object") {
+      return Response.json({ ok: false, error: "Invalid request body." }, { status: 400 });
     }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return NextResponse.json(
-        { ok: false, error: "Please enter a valid email." },
-        { status: 400 },
-      );
+
+    const name = String(body.name ?? "").trim();
+    const email = String(body.email ?? "").trim();
+    const message = String(body.message ?? "").trim();
+
+    if (!name || name.length > 100) {
+      return Response.json({ ok: false, error: "Please enter a valid name." }, { status: 400 });
+    }
+    if (!EMAIL_RE.test(email) || email.length > 200) {
+      return Response.json({ ok: false, error: "Please enter a valid email address." }, { status: 400 });
+    }
+    if (!message || message.length > 5000) {
+      return Response.json({ ok: false, error: "Please enter a message (max 5,000 characters)." }, { status: 400 });
     }
 
-    const forwarded = req.headers.get("x-forwarded-for");
-    const ip =
-      (forwarded && forwarded.split(",")[0]?.trim()) ||
-      req.headers.get("x-real-ip") ||
-      undefined;
-    const salt = process.env.IP_HASH_SALT || "";
-    const ipHash =
-      ip && ip !== "unknown"
-        ? crypto.createHash("sha256").update(ip + salt).digest("hex")
-        : undefined;
-
+    const ip = clientIp(req);
     const doc = {
       name,
       email,
       message,
-      ipHash,
+      ipHash: hashIp(ip),
+      userAgent: req.headers.get("user-agent") || null,
+      source: "portfolio-contact-form",
+      country: req.headers.get("x-vercel-ip-country") || null,
+      read: false,
       createdAt: new Date(),
     };
 
     const col = await getCollection("contact_messages");
     await col.insertOne(doc);
 
-    const resendKey = process.env.RESEND_API_KEY;
-    if (resendKey) {
-      try {
-        await fetch("https://api.resend.com/emails", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${resendKey}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            from:
-              process.env.CONTACT_FROM ||
-              "Portfolio <onboarding@resend.dev>",
-            to: process.env.CONTACT_TO || profile.email,
-            subject: `New portfolio message from ${name}`,
-            reply_to: email,
-            text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
-          }),
-        });
-      } catch {
-        /* email failure should not fail the stored submission */
-      }
-    }
+    await sendEmailNotification({ name, email, message });
 
-    return NextResponse.json({ ok: true });
+    return Response.json({ ok: true });
   } catch (err) {
-    console.error("[contact]", err);
-    return NextResponse.json(
-      { ok: false, error: "Server error. Please try again." },
+    console.error("contact error", err);
+    return Response.json(
+      { ok: false, error: "Could not send your message. Please try again or email directly." },
       { status: 500 },
     );
   }

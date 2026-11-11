@@ -2,19 +2,18 @@
 
 import { useEffect, useState, type MouseEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import ThemeToggle from "@/components/ThemeToggle";
-import { LogoMark } from "@/components/BrandIcons";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 
 const links = [
+  { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
+  { label: "Services", href: "#services" },
+  { label: "Career", href: "#career" },
+  { label: "Work", href: "#work" },
   { label: "Contact", href: "#contact" },
 ];
 
-const NAV_OFFSET = 72;
+const NAV_OFFSET = 84;
 
 function goToSection(href: string) {
   const el = document.querySelector(href) as HTMLElement | null;
@@ -28,8 +27,9 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -38,69 +38,53 @@ export default function Navbar() {
       e.preventDefault();
       const wasOpen = open;
       setOpen(false);
-      if (wasOpen) {
-        // Mobile: the menu exit animation animates `height` from auto, which
-        // forces layout reflows that cancel the in-flight smooth scroll on
-        // mobile browsers. Wait for the animation to finish before scrolling.
-        setTimeout(() => goToSection(href), 220);
-      } else {
-        goToSection(href);
-      }
+      if (wasOpen) setTimeout(() => goToSection(href), 220);
+      else goToSection(href);
     };
 
   return (
     <motion.header
-      initial={{ y: -80, opacity: 0 }}
+      initial={{ y: -90, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "backdrop-blur-xl border-b border-subtle"
+          ? "border-b border-line bg-bg/85 backdrop-blur-xl shadow-[0_10px_30px_-20px_rgba(0,0,0,0.8)]"
           : "bg-transparent"
       }`}
-      style={scrolled ? { backgroundColor: "var(--nav-bg)" } : undefined}
     >
-      <nav className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
-        <a
-          href="#home"
-          onClick={onNavClick("#home")}
-          className="flex items-center gap-2 font-bold tracking-tight"
-        >
-          <LogoMark className="h-8 w-8 shrink-0" uid="logo-nav" />
-          <span className="gradient-text text-lg">Yohanes</span>
+      <nav className="container-x h-[76px] flex items-center justify-between">
+        <a href="#home" onClick={onNavClick("#home")} className="flex items-center gap-1.5 group">
+          <span className="font-display text-2xl font-extrabold tracking-tight text-ink">
+            Negesu
+          </span>
+          <span className="font-display text-2xl font-extrabold text-brand leading-none">.</span>
         </a>
 
-        <div className="hidden md:flex items-center gap-7">
+        <div className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={onNavClick(l.href)}
-              className="text-sm text-secondary hover:text-primary transition-colors"
+              className="relative text-sm font-medium text-muted hover:text-ink transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-0 after:bg-brand after:transition-all hover:after:w-full"
             >
               {l.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            onClick={onNavClick("#contact")}
-            className="text-sm font-medium px-4 py-2 rounded-full bg-surface-2 border border-subtle hover:bg-surface-2 transition-all"
-          >
-            Hire me
+          <a href="#contact" onClick={onNavClick("#contact")} className="btn-primary px-5 py-2.5 text-sm">
+            Hire Me <ArrowUpRight className="h-4 w-4" />
           </a>
-          <ThemeToggle />
         </div>
 
-        <div className="md:hidden flex items-center gap-2">
-          <ThemeToggle />
-          <button
-            className="text-primary"
-            onClick={() => setOpen(!open)}
-            aria-label="Menu"
-          >
-            {open ? <X /> : <Menu />}
-          </button>
-        </div>
+        <button
+          className="md:hidden text-ink p-1"
+          onClick={() => setOpen(!open)}
+          aria-label="Toggle menu"
+          aria-expanded={open}
+        >
+          {open ? <X /> : <Menu />}
+        </button>
       </nav>
 
       <AnimatePresence>
@@ -109,21 +93,23 @@ export default function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="md:hidden overflow-hidden backdrop-blur-xl border-b border-subtle"
-            style={{ backgroundColor: "var(--nav-bg)" }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="md:hidden overflow-hidden border-b border-line bg-bg/95 backdrop-blur-xl"
           >
-            <div className="px-5 py-4 flex flex-col gap-3">
+            <div className="container-x py-5 flex flex-col gap-1">
               {links.map((l) => (
                 <a
                   key={l.href}
                   href={l.href}
                   onClick={onNavClick(l.href)}
-                  className="text-secondary hover:text-primary py-1"
+                  className="text-muted hover:text-ink py-2.5 border-b border-line/60 last:border-0"
                 >
                   {l.label}
                 </a>
               ))}
+              <a href="#contact" onClick={onNavClick("#contact")} className="btn-primary mt-3 self-start">
+                Hire Me <ArrowUpRight className="h-4 w-4" />
+              </a>
             </div>
           </motion.div>
         )}
