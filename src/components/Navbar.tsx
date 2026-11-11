@@ -2,8 +2,7 @@
 
 import { useEffect, useState, type MouseEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight } from "lucide-react";
-import { LogoMark } from "@/components/BrandIcons";
+import { Menu, X, ArrowUpRight, Globe } from "lucide-react";
 
 const links = [
   { label: "Home", href: "#home" },
@@ -56,7 +55,9 @@ export default function Navbar() {
     >
       <nav className="container-x h-[76px] flex items-center justify-between">
         <a href="#home" onClick={onNavClick("#home")} className="flex items-center gap-2 group">
-          <LogoMark className="h-9 w-9" uid="nt-logo-nav" />
+          <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand text-white shadow-[0_8px_18px_-8px_rgba(255,90,31,0.6)]">
+            <Globe className="h-5 w-5" strokeWidth={2.2} />
+          </span>
           <span className="font-display text-2xl font-extrabold tracking-tight text-ink">
             NegTol<span className="text-brand">.</span>
           </span>
