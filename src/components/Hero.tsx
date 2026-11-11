@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import { MapPin, ArrowDown, ArrowUpRight, Mail, Phone } from "lucide-react";
+import { MapPin, ArrowDown, ArrowUpRight, Mail, Phone, Target, TrendingUp, Smartphone } from "lucide-react";
 import { LinkedinIcon, WhatsappIcon } from "@/components/BrandIcons";
 import { profile } from "@/lib/data";
 
@@ -26,51 +26,65 @@ export default function Hero() {
 
       <div className="container-x">
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-10 items-center">
-          {/* Portrait cut-out — Dizme style, first on mobile so it is always visible */}
+          {/* Portrait cut-out — v style (cropped head-to-chest) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-            className="order-first lg:order-2 relative mx-auto flex justify-center lg:justify-end"
+            className="order-first lg:order-2 relative mx-auto flex w-full justify-center lg:justify-end"
           >
-            <div className="relative flex items-end justify-center">
-              {/* soft pastel shape behind the cut-out */}
-              <div className="absolute bottom-4 left-1/2 -z-0 h-[78%] w-[72%] -translate-x-1/2 rounded-t-[3rem] bg-gradient-to-b from-brand/12 via-[#ffd9c7]/50 to-transparent" />
+            <div className="relative mx-auto aspect-[4/5] w-full max-w-[23rem] sm:max-w-[27rem] lg:max-w-[30rem]">
+              {/* soft brush-smear backdrop */}
+              <svg
+                viewBox="0 0 400 500"
+                preserveAspectRatio="xMidYMid meet"
+                className="pointer-events-none absolute inset-0 z-0 h-full w-full"
+                aria-hidden
+              >
+                <path
+                  d="M152 84 C192 62 250 72 286 102 C314 126 320 162 304 202 C326 236 330 286 300 316 C274 344 228 336 194 326 C164 342 120 342 96 312 C72 285 78 246 92 216 C74 186 80 142 110 114 C123 100 137 92 152 84 Z"
+                  fill="#ece7dd"
+                  opacity="0.9"
+                />
+              </svg>
+
+              {/* decorative hollow circle + dot */}
+              <div className="absolute left-[10%] top-[6%] z-20 h-9 w-9 rounded-full border-2 border-brand/50" />
+              <div className="absolute left-[30%] top-[18%] z-20 h-2.5 w-2.5 rounded-full bg-brand" />
 
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/images/negesu/portrait-cutout.png"
+                src="/images/negesu/portrait-crop.png"
                 alt={`${profile.name} — ${profile.title}`}
-                className="relative z-10 mx-auto h-[26rem] w-auto max-w-full object-contain object-bottom drop-shadow-[0_30px_35px_rgba(23,23,31,0.18)] sm:h-[32rem] lg:h-[38rem]"
+                className="absolute inset-x-0 bottom-0 z-10 mx-auto w-full object-contain object-bottom drop-shadow-[0_28px_32px_rgba(23,23,31,0.16)]"
               />
 
-              {/* floating icon badges */}
+              {/* floating icon tiles (v style) */}
               <motion.div
-                initial={{ opacity: 0, y: -12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.55 }}
-                className="absolute left-0 top-8 z-20 flex items-center gap-2 rounded-xl border border-line bg-surface/95 px-3 py-2 shadow-lg backdrop-blur"
+                initial={{ opacity: 0, y: -10, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: 0.5, duration: 0.5, ease: "easeOut" }}
+                className="absolute left-[12%] top-[13%] z-30 grid h-12 w-12 -rotate-6 place-items-center rounded-xl bg-[#3a120c] text-amber-400 shadow-lg"
               >
-                <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand text-sm font-bold text-white">
-                  10+
-                </span>
-                <span className="text-xs font-semibold leading-tight text-ink">
-                  Years<br />Experience
-                </span>
+                <Target className="h-6 w-6" />
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
-                className="absolute right-0 top-28 z-20 flex items-center gap-2 rounded-xl border border-line bg-surface/95 px-3 py-2 shadow-lg backdrop-blur"
+                initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: 0.65, duration: 0.5, ease: "easeOut" }}
+                className="absolute right-[13%] top-[32%] z-30 grid h-12 w-12 rotate-3 place-items-center rounded-xl bg-[#0b2545] text-sky-400 shadow-lg"
               >
-                <span className="grid h-8 w-8 place-items-center rounded-lg bg-green/12 text-green">
-                  <WhatsappIcon className="h-4 w-4" />
-                </span>
-                <span className="text-xs font-semibold leading-tight text-ink">
-                  M-PESA<br />Growth
-                </span>
+                <TrendingUp className="h-6 w-6" />
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: 0.8, duration: 0.5, ease: "easeOut" }}
+                className="absolute bottom-[7%] left-1/2 z-30 grid h-12 w-12 -translate-x-1/2 place-items-center rounded-xl bg-white text-green shadow-lg ring-1 ring-line"
+              >
+                <Smartphone className="h-6 w-6" />
               </motion.div>
             </div>
           </motion.div>
