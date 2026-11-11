@@ -21,7 +21,7 @@ export default function Experience() {
           className="max-w-2xl"
         >
           <p className="eyebrow">Career</p>
-          <h2 className="font-display text-3xl md:text-[2.8rem] font-extrabold leading-[1.08] tracking-tight mt-4">
+          <h2 className="font-display text-2xl md:text-[2rem] font-extrabold leading-[1.1] tracking-tight mt-4">
             My Professional <span className="text-brand">Journey</span>
           </h2>
           <p className="mt-5 text-base md:text-lg text-muted leading-relaxed">
@@ -64,7 +64,7 @@ export default function Experience() {
                     <Briefcase className="h-4 w-4" />
                   </span>
                   <div>
-                    <h3 className="font-display text-xl md:text-2xl font-bold leading-tight">{exp.role}</h3>
+                    <h3 className="font-display text-lg md:text-xl font-bold leading-tight">{exp.role}</h3>
                     <p className="text-brand font-medium text-sm mt-0.5">{exp.company}</p>
                   </div>
                 </div>

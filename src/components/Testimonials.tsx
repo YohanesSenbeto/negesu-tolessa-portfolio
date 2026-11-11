@@ -14,7 +14,7 @@ export default function Testimonials() {
       <div className="container-x">
         <div className="text-center max-w-2xl mx-auto">
           <p className="eyebrow justify-center">Approach</p>
-          <h2 className="font-display text-3xl md:text-[2.8rem] font-extrabold leading-[1.08] tracking-tight mt-4">
+          <h2 className="font-display text-2xl md:text-[2rem] font-extrabold leading-[1.1] tracking-tight mt-4">
             In My Own <span className="text-brand">Words</span>
           </h2>
         </div>
@@ -27,7 +27,7 @@ export default function Testimonials() {
           className="relative mx-auto mt-12 max-w-3xl text-center"
         >
           <Quote className="mx-auto h-12 w-12 text-brand/70" />
-          <blockquote className="mt-6 font-display text-xl md:text-2xl lg:text-[1.7rem] leading-relaxed text-ink">
+          <blockquote className="mt-6 font-display text-lg md:text-xl lg:text-[1.3rem] leading-relaxed text-ink">
             “{approach.quote}”
           </blockquote>
 

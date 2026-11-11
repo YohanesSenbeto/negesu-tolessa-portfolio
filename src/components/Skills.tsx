@@ -21,7 +21,7 @@ export default function Skills() {
             variants={fadeUp}
           >
             <p className="eyebrow">Skills</p>
-            <h2 className="font-display text-3xl md:text-[2.8rem] font-extrabold leading-[1.08] tracking-tight mt-4">
+            <h2 className="font-display text-2xl md:text-[2rem] font-extrabold leading-[1.1] tracking-tight mt-4">
               I Build Skills That <span className="text-brand">Keep Me Sharp</span>
             </h2>
             <p className="mt-5 text-base md:text-lg text-muted leading-relaxed">

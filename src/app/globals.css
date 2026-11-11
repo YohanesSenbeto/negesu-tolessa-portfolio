@@ -45,15 +45,15 @@ html {
   font-size: 16px;
 }
 
-/* Wide screens: scale typography (and rem-based spacing) up */
+/* Wide screens: keep typography modest (subtle scale only) */
 @media (min-width: 1536px) {
   html {
-    font-size: 17.5px;
+    font-size: 16.5px;
   }
 }
 @media (min-width: 1920px) {
   html {
-    font-size: 19px;
+    font-size: 17px;
   }
 }
 

@@ -91,13 +91,13 @@ export default function Hero() {
 
           {/* Text */}
           <motion.div variants={container} initial="hidden" animate="show" className="order-2 lg:order-1 text-center lg:text-left">
-            <motion.p variants={item} className="font-display text-lg md:text-xl text-muted">
+            <motion.p variants={item} className="font-display text-base md:text-lg text-muted">
               Hello, I am <span className="text-brand">👋</span>
             </motion.p>
 
             <motion.h1
               variants={item}
-              className="font-display font-extrabold tracking-tight leading-[1.02] mt-2 text-[clamp(2.8rem,6vw,5.4rem)]"
+              className="font-display font-extrabold tracking-tight leading-[1.05] mt-2 text-[clamp(1.9rem,3.4vw,3.25rem)]"
             >
               {profile.firstName}
               <br className="hidden sm:block" /> <span className="text-gradient">{profile.lastName}</span>
@@ -105,14 +105,14 @@ export default function Hero() {
 
             <motion.p
               variants={item}
-              className="mt-4 font-display text-xl md:text-2xl font-semibold text-ink"
+              className="mt-4 font-display text-lg md:text-xl font-semibold text-ink"
             >
               A <span className="text-brand">Sales &amp; Marketing Leader</span> From Ambo, Ethiopia
             </motion.p>
 
             <motion.p
               variants={item}
-              className="mt-5 text-base md:text-lg text-muted leading-relaxed max-w-xl mx-auto lg:mx-0"
+              className="mt-5 text-sm md:text-base text-muted leading-relaxed max-w-xl mx-auto lg:mx-0"
             >
               Over 10 years turning regional targets into market leadership across telecom sales,
               distribution, and M-PESA growth — building high-performing teams that deliver.

@@ -22,7 +22,7 @@ export default function CtaBand() {
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/70">
                 Let&apos;s work together
               </p>
-              <h2 className="font-display text-2xl md:text-4xl font-extrabold text-white leading-tight mt-2">
+              <h2 className="font-display text-xl md:text-3xl font-extrabold text-white leading-tight mt-2">
                 Ready to grow your next market?
               </h2>
               <p className="mt-2 text-white/80 max-w-lg">
