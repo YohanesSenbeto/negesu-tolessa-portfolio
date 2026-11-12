@@ -22,7 +22,7 @@ export default function Footer() {
               <div>
                 <p className="font-display text-lg font-bold text-ink">NegTol<span className="text-brand">.</span></p>
                 <p className="text-xs uppercase tracking-[0.18em] text-brand mt-0.5">
-                  Sales &amp; Marketing Leader
+                  Regional Sales Manager
                 </p>
               </div>
             </div>

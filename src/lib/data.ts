@@ -5,7 +5,7 @@ export const profile = {
   lastName: "Tolessa",
   initials: "NT",
   title: "Regional Sales Manager · Telecom & Digital Financial Services",
-  roleLine: "A Sales & Marketing Leader From Ambo, Ethiopia",
+  roleLine: "A Regional Sales Manager at Safaricom Telecommunications Ethiopia PLC",
   headline:
     "I turn ambitious sales targets into market leadership — through people, distribution, and the growth of M-PESA.",
   tagline:
