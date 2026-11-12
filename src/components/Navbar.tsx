@@ -65,20 +65,24 @@ export default function Navbar() {
         </a>
 
         <div className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              onClick={onNavClick(l.href)}
-              className="relative text-sm font-medium text-muted hover:text-ink transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-0 after:bg-brand after:transition-all hover:after:w-full"
-            >
-              {l.label}
+          <div className="flex items-center gap-8">
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={onNavClick(l.href)}
+                className="relative text-sm font-medium text-muted hover:text-ink transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-0 after:bg-brand after:transition-all hover:after:w-full"
+              >
+                {l.label}
+              </a>
+            ))}
+          </div>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <a href="#contact" onClick={onNavClick("#contact")} className="btn-primary px-5 py-2.5 text-sm">
+              Hire Me <ArrowUpRight className="h-4 w-4" />
             </a>
-          ))}
-          <ThemeToggle />
-          <a href="#contact" onClick={onNavClick("#contact")} className="btn-primary px-5 py-2.5 text-sm">
-            Hire Me <ArrowUpRight className="h-4 w-4" />
-          </a>
+          </div>
         </div>
 
         <button
@@ -111,10 +115,12 @@ export default function Navbar() {
                   {l.label}
                 </a>
               ))}
-              <ThemeToggle className="mt-3 self-start" />
-              <a href="#contact" onClick={onNavClick("#contact")} className="btn-primary mt-3 self-start">
-                Hire Me <ArrowUpRight className="h-4 w-4" />
-              </a>
+              <div className="mt-3 flex items-center gap-3">
+                <a href="#contact" onClick={onNavClick("#contact")} className="btn-primary">
+                  Hire Me <ArrowUpRight className="h-4 w-4" />
+                </a>
+                <ThemeToggle />
+              </div>
             </div>
           </motion.div>
         )}

@@ -31,9 +31,9 @@ export default function Hero() {
             <div className="relative mx-auto w-full max-w-[24rem] sm:max-w-[32rem] lg:max-w-none">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/images/negesu/hero-portrait.jpg"
+                src="/images/negesu/hero-portrait.png"
                 alt={`${profile.name} — ${profile.title}`}
-                className="h-auto w-full select-none rounded-2xl"
+                className="h-auto w-full select-none"
               />
             </div>
           </motion.div>
