@@ -9,7 +9,7 @@ export const profile = {
   headline:
     "I turn ambitious sales targets into market leadership — through people, distribution, and the growth of M-PESA.",
   tagline:
-    "Sales & marketing leader with 10+ years turning regional targets into market leadership across Safaricom and Ethio Telecom.",
+    "Regional sales leader with 10+ years turning regional targets into market leadership across Safaricom and Ethio Telecom.",
   location: "Ambo, Oromia, Ethiopia",
   phones: ["+251 917 837 779", "+251 799 337 779"],
   phoneLinks: ["+251917837779", "+251799337779"],
