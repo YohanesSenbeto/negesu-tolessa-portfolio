@@ -109,7 +109,7 @@ export default function RootLayout({
       className={`${inter.variable} ${poppins.variable} antialiased`}
       suppressHydrationWarning
     >
-      <body className="grain min-h-screen flex flex-col bg-bg text-ink">
+      <body className="min-h-screen flex flex-col bg-bg text-ink">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

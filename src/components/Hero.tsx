@@ -17,12 +17,7 @@ const item: Variants = {
 export default function Hero() {
   return (
     <section id="home" className="relative overflow-hidden pt-28 pb-16 md:pt-32 md:pb-24">
-      {/* Ambient pastel wash — Dizme-style light hero */}
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute -top-24 right-[-6%] h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle,rgba(255,138,61,0.22),transparent_62%)] blur-2xl" />
-        <div className="absolute -top-28 left-[-8%] h-[32rem] w-[32rem] rounded-full bg-[radial-gradient(circle,rgba(255,182,193,0.30),transparent_62%)] blur-2xl" />
-        <div className="absolute bottom-[-14rem] left-[-6rem] h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(147,197,253,0.26),transparent_62%)] blur-2xl" />
-      </div>
+      {/* Pure white hero background */}
 
       <div className="container-x">
         <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-8 items-center">
