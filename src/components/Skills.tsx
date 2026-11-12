@@ -2,6 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import { skillBars } from "@/lib/data";
+import ReadMore from "@/components/ReadMore";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 26 },
@@ -24,10 +25,14 @@ export default function Skills() {
             <h2 className="font-display text-2xl md:text-[2rem] font-extrabold leading-[1.1] tracking-tight mt-4">
               I Build Skills That <span className="text-brand">Keep Me Sharp</span>
             </h2>
-            <p className="mt-5 text-base md:text-lg text-muted leading-relaxed">
+            <ReadMore
+              className="mt-5"
+              lines={3}
+              textClassName="text-base md:text-lg text-muted leading-relaxed"
+            >
               After a decade in the field, these are the strengths I bring to every region I lead —
               measured by results, not just experience.
-            </p>
+            </ReadMore>
 
             <div className="mt-8 space-y-5">
               {skillBars.map((s, i) => (

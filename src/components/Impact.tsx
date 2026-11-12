@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Expand } from "lucide-react";
 import GalleryModal from "@/components/GalleryModal";
 import { gallery } from "@/lib/data";
+import ReadMore from "@/components/ReadMore";
 
 const categories = ["All", ...Array.from(new Set(gallery.map((g) => g.category)))];
 
@@ -29,10 +30,14 @@ export default function Impact() {
           <h2 className="font-display text-2xl md:text-[2rem] font-extrabold leading-[1.1] tracking-tight mt-4">
             My Impact <span className="text-brand">in the Field</span>
           </h2>
-          <p className="mt-4 text-base md:text-lg text-muted leading-relaxed">
+          <ReadMore
+            className="mt-4"
+            lines={3}
+            textClassName="text-base md:text-lg text-muted leading-relaxed"
+          >
             Activations, trainings, and customer moments across the Ambo region — where strategy
             meets the street, the shop, and the community.
-          </p>
+          </ReadMore>
         </div>
 
         {/* Filters */}

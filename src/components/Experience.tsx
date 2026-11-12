@@ -3,6 +3,7 @@
 import { motion, type Variants } from "framer-motion";
 import { Briefcase, GraduationCap, MapPin } from "lucide-react";
 import { experiences, education } from "@/lib/data";
+import ReadMore from "@/components/ReadMore";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 26 },
@@ -24,10 +25,14 @@ export default function Experience() {
           <h2 className="font-display text-2xl md:text-[2rem] font-extrabold leading-[1.1] tracking-tight mt-4">
             My Professional <span className="text-brand">Journey</span>
           </h2>
-          <p className="mt-5 text-base md:text-lg text-muted leading-relaxed">
+          <ReadMore
+            className="mt-5"
+            lines={3}
+            textClassName="text-base md:text-lg text-muted leading-relaxed"
+          >
             A clear upward path — from the shop floor to leading an entire region&apos;s sales
             operations. Every step built on the one before it.
-          </p>
+          </ReadMore>
         </motion.div>
 
         <div className="relative mt-12">
@@ -69,7 +74,13 @@ export default function Experience() {
                   </div>
                 </div>
 
-                <p className="mt-3 text-sm text-muted leading-relaxed">{exp.summary}</p>
+                <ReadMore
+                  className="mt-3"
+                  lines={3}
+                  textClassName="text-sm text-muted leading-relaxed"
+                >
+                  {exp.summary}
+                </ReadMore>
 
                 <ul className="mt-4 grid sm:grid-cols-2 gap-x-6 gap-y-2">
                   {exp.points.map((pt) => (

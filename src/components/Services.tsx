@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Network, Megaphone, Users, Smartphone, ArrowRight, type LucideIcon } from "lucide-react";
 import { services, type Service } from "@/lib/data";
+import ReadMore from "@/components/ReadMore";
 
 const iconMap: Record<Service["icon"], LucideIcon> = {
   distribution: Network,
@@ -26,9 +27,13 @@ export default function Services() {
           <h2 className="font-display text-2xl md:text-[2rem] font-extrabold leading-[1.1] tracking-tight mt-4">
             What I Do <span className="text-brand">for Clients</span>
           </h2>
-          <p className="mt-4 text-base md:text-lg text-muted leading-relaxed">
+          <ReadMore
+            className="mt-4"
+            lines={3}
+            textClassName="text-base md:text-lg text-muted leading-relaxed"
+          >
             The core commercial capabilities I bring to a region, a team, or a growth mandate.
-          </p>
+          </ReadMore>
         </div>
 
         <div className="mt-12 grid md:grid-cols-2 gap-5">

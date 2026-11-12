@@ -3,6 +3,7 @@
 import { motion, type Variants } from "framer-motion";
 import { ArrowUpRight, Check } from "lucide-react";
 import { profile, highlights } from "@/lib/data";
+import ReadMore from "@/components/ReadMore";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -64,12 +65,22 @@ export default function About() {
               I Can Grow <span className="text-brand">Any Market</span> You Want
             </h2>
 
-            <p className="mt-5 text-base md:text-lg text-muted leading-relaxed">{profile.summary}</p>
-            <p className="mt-3 text-base md:text-lg text-muted leading-relaxed">
+            <ReadMore
+              className="mt-5"
+              lines={3}
+              textClassName="text-base md:text-lg text-muted leading-relaxed"
+            >
+              {profile.summary}
+            </ReadMore>
+            <ReadMore
+              className="mt-3"
+              lines={3}
+              textClassName="text-base md:text-lg text-muted leading-relaxed"
+            >
               I have grown through every layer of telecom retail and distribution — from the shop
               floor to regional leadership — so I understand the customer, the agent, and the numbers
               behind the target.
-            </p>
+            </ReadMore>
 
             <ul className="mt-6 grid sm:grid-cols-2 gap-3">
               {highlights.map((h) => (

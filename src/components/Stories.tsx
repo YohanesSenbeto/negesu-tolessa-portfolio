@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { stories } from "@/lib/data";
+import ReadMore from "@/components/ReadMore";
 
 export default function Stories() {
   return (
@@ -13,9 +14,13 @@ export default function Stories() {
           <h2 className="font-display text-2xl md:text-[2rem] font-extrabold leading-[1.1] tracking-tight mt-4">
             Field Stories &amp; <span className="text-brand">Milestones</span>
           </h2>
-          <p className="mt-4 text-base md:text-lg text-muted leading-relaxed">
+          <ReadMore
+            className="mt-4"
+            lines={3}
+            textClassName="text-base md:text-lg text-muted leading-relaxed"
+          >
             Moments from the ground — activations, team training, and community work.
-          </p>
+          </ReadMore>
         </div>
 
         <div className="mt-12 grid md:grid-cols-3 gap-6">

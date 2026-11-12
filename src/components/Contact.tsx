@@ -5,6 +5,7 @@ import { motion, type Variants } from "framer-motion";
 import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle } from "lucide-react";
 import { LinkedinIcon, WhatsappIcon } from "@/components/BrandIcons";
 import { profile } from "@/lib/data";
+import ReadMore from "@/components/ReadMore";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 26 },
@@ -52,10 +53,14 @@ export default function Contact() {
           <h2 className="font-display text-2xl md:text-[2rem] font-extrabold leading-[1.1] tracking-tight mt-4">
             I Want to <span className="text-brand">Hear From You</span>
           </h2>
-          <p className="mt-4 text-base md:text-lg text-muted leading-relaxed">
+          <ReadMore
+            className="mt-4"
+            lines={3}
+            textClassName="text-base md:text-lg text-muted leading-relaxed"
+          >
             Open to senior sales and commercial leadership roles, regional growth mandates, and
             M-PESA / digital financial services initiatives.
-          </p>
+          </ReadMore>
         </div>
 
         <div className="mt-12 grid lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-12 items-start">

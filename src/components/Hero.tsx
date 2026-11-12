@@ -4,6 +4,7 @@ import { motion, type Variants } from "framer-motion";
 import { MapPin, ArrowDown, ArrowUpRight, Mail, Phone } from "lucide-react";
 import { LinkedinIcon, WhatsappIcon } from "@/components/BrandIcons";
 import { profile } from "@/lib/data";
+import ReadMore from "@/components/ReadMore";
 
 const container: Variants = {
   hidden: {},
@@ -59,13 +60,18 @@ export default function Hero() {
               <span className="text-[var(--accent-purple)]">Safaricom Telecommunications Ethiopia PLC</span>
             </motion.p>
 
-            <motion.p
+            <motion.div
               variants={item}
-              className="mt-5 text-sm md:text-base text-muted leading-relaxed max-w-xl mx-auto lg:mx-0"
+              className="mt-5 max-w-xl mx-auto lg:mx-0"
             >
-              Over 10 years turning regional targets into market leadership across telecom sales,
-              distribution, and M-PESA growth — building high-performing teams that deliver.
-            </motion.p>
+              <ReadMore
+                lines={3}
+                textClassName="text-sm md:text-base text-muted leading-relaxed"
+              >
+                Over 10 years turning regional targets into market leadership across telecom sales,
+                distribution, and M-PESA growth — building high-performing teams that deliver.
+              </ReadMore>
+            </motion.div>
 
             <motion.div
               variants={item}

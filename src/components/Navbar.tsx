@@ -85,14 +85,17 @@ export default function Navbar() {
           </div>
         </div>
 
-        <button
-          className="md:hidden text-ink p-1"
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-          aria-expanded={open}
-        >
-          {open ? <X /> : <Menu />}
-        </button>
+        <div className="flex items-center gap-1.5 md:hidden">
+          <ThemeToggle />
+          <button
+            className="text-ink p-1"
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
+            aria-expanded={open}
+          >
+            {open ? <X /> : <Menu />}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -115,11 +118,10 @@ export default function Navbar() {
                   {l.label}
                 </a>
               ))}
-              <div className="mt-3 flex items-center gap-3">
-                <a href="#contact" onClick={onNavClick("#contact")} className="btn-primary">
+              <div className="mt-3">
+                <a href="#contact" onClick={onNavClick("#contact")} className="btn-primary w-full justify-center">
                   Hire Me <ArrowUpRight className="h-4 w-4" />
                 </a>
-                <ThemeToggle />
               </div>
             </div>
           </motion.div>
