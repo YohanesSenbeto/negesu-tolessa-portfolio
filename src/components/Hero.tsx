@@ -40,23 +40,23 @@ export default function Hero() {
 
           {/* Text */}
           <motion.div variants={container} initial="hidden" animate="show" className="order-2 lg:order-1 text-center lg:text-left">
-            <motion.p variants={item} className="font-display text-base md:text-lg text-muted">
+            <motion.p variants={item} className="font-display text-base md:text-lg text-brand">
               Hello, I am
             </motion.p>
 
             <motion.h1
               variants={item}
-              className="font-display font-extrabold tracking-tight leading-[1.05] mt-2 text-[clamp(1.9rem,3.4vw,3.25rem)]"
+              className="font-display font-extrabold tracking-tight leading-[1.05] mt-2 text-[clamp(1.7rem,3.1vw,2.75rem)]"
             >
-              {profile.firstName}
-              <br className="hidden sm:block" /> <span className="text-gradient">{profile.lastName}</span>
+              <span className="whitespace-nowrap">{profile.firstName} {profile.lastName}</span>
             </motion.h1>
 
             <motion.p
               variants={item}
               className="mt-4 font-display text-lg md:text-xl font-semibold text-ink"
             >
-              A <span className="text-brand">Sales &amp; Marketing Leader</span> From Ambo, Ethiopia
+              A <span className="text-[var(--accent-green)]">Regional Sales Manager</span> at{" "}
+              <span className="text-[var(--accent-purple)]">Safaricom Telecommunications Ethiopia PLC</span>
             </motion.p>
 
             <motion.p

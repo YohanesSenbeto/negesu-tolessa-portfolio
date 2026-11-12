@@ -33,6 +33,8 @@
      contrast to be readable as text on white) */
   --purple: #ff8a3d;     /* mid orange */
   --green: #e8590c;      /* deep orange */
+  --accent-green: #16a34a;   /* hero subtitle — role */
+  --accent-purple: #7c3aed;  /* hero subtitle — company */
   --cream: #ffffff;
 }
 
@@ -50,6 +52,8 @@
   --brand-2: #ff8350;
   --purple: #ff9a5a;
   --green: #ff7a3f;
+  --accent-green: #4ade80;
+  --accent-purple: #a78bfa;
   --cream: #0f1014;
 }
 
