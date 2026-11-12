@@ -12,7 +12,7 @@ const fadeUp: Variants = {
 
 export default function Experience() {
   return (
-    <section id="career" className="relative py-20 md:py-28 bg-bg-2 border-y border-line">
+    <section id="experience" className="relative py-20 md:py-28 bg-bg-2 border-y border-line">
       <div className="container-x">
         <motion.div
           initial="hidden"
@@ -21,7 +21,7 @@ export default function Experience() {
           variants={fadeUp}
           className="max-w-2xl"
         >
-          <p className="eyebrow">Career</p>
+          <p className="eyebrow">Experience</p>
           <h2 className="font-display text-2xl md:text-[2rem] font-extrabold leading-[1.1] tracking-tight mt-4">
             My Professional <span className="text-brand">Journey</span>
           </h2>

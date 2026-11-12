@@ -50,7 +50,7 @@ export default function Stories() {
                 </h3>
                 <p className="mt-2 text-sm text-muted leading-relaxed">{s.excerpt}</p>
                 <a
-                  href="#work"
+                  href="#impact"
                   className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand transition-transform group-hover:translate-x-1"
                 >
                   Read more <ArrowRight className="h-4 w-4" />

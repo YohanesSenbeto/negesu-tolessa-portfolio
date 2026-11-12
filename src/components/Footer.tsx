@@ -5,8 +5,8 @@ import { profile } from "@/lib/data";
 const nav = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
-  { label: "Career", href: "#career" },
-  { label: "Work", href: "#work" },
+  { label: "Experience", href: "#experience" },
+  { label: "Impact", href: "#impact" },
   { label: "Contact", href: "#contact" },
 ];
 
