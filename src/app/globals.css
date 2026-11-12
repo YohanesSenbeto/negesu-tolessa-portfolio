@@ -36,6 +36,23 @@
   --cream: #ffffff;
 }
 
+/* Dark theme */
+.dark {
+  --bg: #0f1014;
+  --bg-2: #16171d;
+  --surface: #1a1b22;
+  --surface-2: #21232c;
+  --ink: #f3f3f6;
+  --muted: #a6a7b2;
+  --line: rgba(255, 255, 255, 0.12);
+
+  --brand: #ff6a33;
+  --brand-2: #ff8350;
+  --purple: #ff9a5a;
+  --green: #ff7a3f;
+  --cream: #0f1014;
+}
+
 * {
   scroll-behavior: smooth;
 }
@@ -43,6 +60,11 @@
 html {
   scroll-padding-top: 6rem;
   font-size: 16px;
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
 }
 
 /* Wide screens: keep typography modest (subtle scale only) */
@@ -60,6 +82,7 @@ html {
 body {
   background-color: var(--bg);
   color: var(--ink);
+  transition: background-color 0.25s ease, color 0.25s ease;
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;

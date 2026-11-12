@@ -3,6 +3,7 @@
 import { useEffect, useState, type MouseEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight, Globe } from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const links = [
   { label: "Home", href: "#home" },
@@ -74,6 +75,7 @@ export default function Navbar() {
               {l.label}
             </a>
           ))}
+          <ThemeToggle />
           <a href="#contact" onClick={onNavClick("#contact")} className="btn-primary px-5 py-2.5 text-sm">
             Hire Me <ArrowUpRight className="h-4 w-4" />
           </a>
@@ -109,6 +111,7 @@ export default function Navbar() {
                   {l.label}
                 </a>
               ))}
+              <ThemeToggle className="mt-3 self-start" />
               <a href="#contact" onClick={onNavClick("#contact")} className="btn-primary mt-3 self-start">
                 Hire Me <ArrowUpRight className="h-4 w-4" />
               </a>

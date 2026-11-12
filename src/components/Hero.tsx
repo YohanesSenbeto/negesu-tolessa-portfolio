@@ -33,7 +33,7 @@ export default function Hero() {
               <img
                 src="/images/negesu/hero-portrait.jpg"
                 alt={`${profile.name} — ${profile.title}`}
-                className="h-auto w-full select-none"
+                className="h-auto w-full select-none rounded-2xl"
               />
             </div>
           </motion.div>
@@ -41,7 +41,7 @@ export default function Hero() {
           {/* Text */}
           <motion.div variants={container} initial="hidden" animate="show" className="order-2 lg:order-1 text-center lg:text-left">
             <motion.p variants={item} className="font-display text-base md:text-lg text-muted">
-              Hello, I am <span className="text-brand">👋</span>
+              Hello, I am
             </motion.p>
 
             <motion.h1
