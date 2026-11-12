@@ -37,27 +37,50 @@ function goToSection(href: string) {
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("#home");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    // Scroll-spy: highlight the section currently in view (orange like hover).
+    const computeActive = () => {
+      const off = NAV_OFFSET + 8;
+      let best = "#home";
+      let bestTop = -Infinity;
+      for (const l of links) {
+        const el = document.querySelector(l.href) as HTMLElement | null;
+        if (!el) continue;
+        const top = el.getBoundingClientRect().top;
+        if (top <= off && top > bestTop) {
+          bestTop = top;
+          best = l.href;
+        }
+      }
+      // Near the very bottom, force the last item (Contact) active.
+      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) {
+        best = links[links.length - 1].href;
+      }
+      setActive(best);
+    };
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24);
+      computeActive();
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", computeActive);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", computeActive);
+    };
   }, []);
 
-  // Sync scrolling with back/forward navigation and honor deep links on load.
+  // Back/forward navigation keeps scrolling in sync with the URL hash.
   useEffect(() => {
     const onPop = () => {
       if (window.location.hash) scrollToSection(window.location.hash);
+      else window.scrollTo({ top: 0, behavior: "smooth" });
     };
     window.addEventListener("popstate", onPop);
-    const t = window.location.hash
-      ? window.setTimeout(() => scrollToSection(window.location.hash), 60)
-      : 0;
-    return () => {
-      window.removeEventListener("popstate", onPop);
-      if (t) window.clearTimeout(t);
-    };
+    return () => window.removeEventListener("popstate", onPop);
   }, []);
 
   const onNavClick =
@@ -65,6 +88,7 @@ export default function Navbar() {
       e.preventDefault();
       const wasOpen = open;
       setOpen(false);
+      setActive(href);
       if (wasOpen) setTimeout(() => goToSection(href), 220);
       else goToSection(href);
     };
@@ -97,7 +121,10 @@ export default function Navbar() {
                 key={l.href}
                 href={l.href}
                 onClick={onNavClick(l.href)}
-                className="relative text-sm font-medium text-muted hover:text-ink transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-0 after:bg-brand after:transition-all hover:after:w-full"
+                aria-current={active === l.href ? "page" : undefined}
+                className={`relative text-sm font-medium transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:bg-brand after:transition-all hover:after:w-full ${
+                  active === l.href ? "text-brand after:w-full" : "text-muted hover:text-ink"
+                }`}
               >
                 {l.label}
               </a>
@@ -139,7 +166,10 @@ export default function Navbar() {
                   key={l.href}
                   href={l.href}
                   onClick={onNavClick(l.href)}
-                  className="text-muted hover:text-ink py-2.5 border-b border-line/60 last:border-0"
+                  aria-current={active === l.href ? "page" : undefined}
+                  className={`py-2.5 border-b border-line/60 last:border-0 ${
+                    active === l.href ? "text-brand font-semibold" : "text-muted hover:text-ink"
+                  }`}
                 >
                   {l.label}
                 </a>
