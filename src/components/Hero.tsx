@@ -25,20 +25,20 @@ export default function Hero() {
       </div>
 
       <div className="container-x">
-        <div className="grid lg:grid-cols-2 gap-14 lg:gap-10 items-center">
-          {/* Portrait — watercolor cut-out (reduced size) */}
+        <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-8 items-center">
+          {/* Portrait — larger than the text, reference style */}
           <motion.div
             initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
             className="order-first lg:order-2 relative mx-auto flex w-full justify-center lg:justify-end"
           >
-            <div className="relative mx-auto w-full max-w-[22rem] sm:max-w-[26rem] lg:max-w-[32rem]">
+            <div className="relative mx-auto w-full max-w-[24rem] sm:max-w-[32rem] lg:max-w-none">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/negesu/hero-portrait.jpg"
                 alt={`${profile.name} — ${profile.title}`}
-                className="h-auto w-full select-none rounded-2xl shadow-[0_26px_60px_-30px_rgba(23,23,31,0.3)]"
+                className="h-auto w-full select-none"
               />
             </div>
           </motion.div>
