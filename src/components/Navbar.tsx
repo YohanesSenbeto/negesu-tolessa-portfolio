@@ -16,11 +16,22 @@ const links = [
 
 const NAV_OFFSET = 84;
 
-function goToSection(href: string) {
+function scrollToSection(href: string) {
   const el = document.querySelector(href) as HTMLElement | null;
   if (!el) return;
   const y = el.getBoundingClientRect().top + window.scrollY - NAV_OFFSET;
   window.scrollTo({ top: Math.max(y, 0), behavior: "smooth" });
+}
+
+function updateHash(href: string) {
+  if (window.location.hash !== href) {
+    window.history.pushState(null, "", href);
+  }
+}
+
+function goToSection(href: string) {
+  scrollToSection(href);
+  updateHash(href);
 }
 
 export default function Navbar() {
@@ -32,6 +43,21 @@ export default function Navbar() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Sync scrolling with back/forward navigation and honor deep links on load.
+  useEffect(() => {
+    const onPop = () => {
+      if (window.location.hash) scrollToSection(window.location.hash);
+    };
+    window.addEventListener("popstate", onPop);
+    const t = window.location.hash
+      ? window.setTimeout(() => scrollToSection(window.location.hash), 60)
+      : 0;
+    return () => {
+      window.removeEventListener("popstate", onPop);
+      if (t) window.clearTimeout(t);
+    };
   }, []);
 
   const onNavClick =
